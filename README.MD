@@ -25,18 +25,18 @@ Su objetivo es **informar, educar y motivar** decisiones de compra más saludabl
 ## 🚀 Instalación y ejecución
 
 1. **Clonar el repositorio**
-   git clone git@github.com:USUARIO/app-tesis.git
-   cd app-tesis
+   - git clone git@github.com:USUARIO/app-tesis.git
+   - cd app-tesis
 2. **Instalar dependencias**
-   npm install --legacy-peer-deps
+   - npm install --legacy-peer-deps
 
 3. **Instalar pods (solo iOS)**
-   npx pod-install
+   - npx pod-install
 
 4. **Iniciar el servidor de desarrollo**
-   npx expo start -c
+   - npx expo start -c
 
 5. **Probar la app**
-   Escanear el QR con Expo Go (iOS o Android) o usar el iOS Simulator / Android Emulator
+   - Escanear el QR con Expo Go (iOS o Android) o usar el iOS Simulator / Android Emulator
 
 

@@ -20,6 +20,8 @@ expo-env.d.ts
 # Metro
 .metro-health-check*
 
+
+
 # debug
 npm-debug.*
 yarn-debug.*
@@ -34,3 +36,51 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Expo / React Native
+.expo/
+.expo-shared/
+.expo/*
+.web-build/
+web-build/
+dist/
+bundle/
+.buckconfig
+.gradle/
+.idea/
+.vscode/
+*.iml
+android/app/build/
+ios/build/
+ios/Pods/
+.expo-dev-cache/
+metro-cache/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Logs
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# Others
+*.swp
+*.swo
+*.tmp
+*.temp
+*.bak

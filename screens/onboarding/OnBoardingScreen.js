@@ -1,3 +1,4 @@
+// screens/onboarding/OnboardingScreen.js
 import React, { useRef, useEffect } from "react";
 import {
   View,
@@ -16,14 +17,62 @@ import { setItem } from "../utils/asyncStorage";
 
 const { width, height } = Dimensions.get("window");
 
+// Bridge mínimo a tu theme
+const UI = {
+  colors: {
+    primary: COLORS.logoCeleste, // CTA y dot activo (podés cambiar a COLORS.logoVerde si te gusta más)
+    bg: COLORS.verdeClaro, // fondo cálido
+    text: COLORS.text,
+    dot: COLORS.celesteOscuro, // dot inactivo
+  },
+  radius: 12,
+};
+
+// Dot accesible y consistente con la paleta
+const Dot = ({ selected }) => (
+  <Text
+    accessibilityRole="text"
+    accessibilityLabel={selected ? "Paso actual" : "Paso"}
+    style={{
+      margin: 4,
+      fontSize: selected ? 14 : 10,
+      color: selected ? UI.colors.primary : UI.colors.dot,
+    }}
+  >
+    •
+  </Text>
+);
+
+// Botón “pastilla” reutilizable para Next/Skip/Done
+const TextButton = ({ label, style, ...rest }) => (
+  <TouchableOpacity
+    {...rest}
+    accessibilityRole="button"
+    accessibilityLabel={label}
+    hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}
+  >
+    <Text
+      style={[
+        {
+          color: "#FFFFFF",
+          fontSize: 16,
+          fontFamily: FONTS.subtituloTexto.fontFamily,
+          textAlign: "center",
+        },
+        style,
+      ]}
+    >
+      {label}
+    </Text>
+  </TouchableOpacity>
+);
 export default function OnBoardingScreen() {
   const navigation = useNavigation();
-
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const handleDone = () => {
     navigation.navigate("Home");
-    setItem("onboarded", '1');
+    setItem("onboarded", "1");
   };
 
   useEffect(() => {
@@ -38,11 +87,22 @@ export default function OnBoardingScreen() {
   return (
     <View style={styles.container}>
       <Onboarding
-
+        containerStyles={{ backgroundColor: COLORS.verdeClaro }}
+        bottomBarColor="transparent"
+        DotComponent={Dot}
+        SkipButtonComponent={(p) => (
+          <TextButton label="Saltar" style={styles.botonIzq} {...p} />
+        )}
+        NextButtonComponent={(p) => (
+          <TextButton label="Siguiente" style={styles.botonDer} {...p} />
+        )}
+        DoneButtonComponent={(p) => (
+          <TextButton label="Empezar" style={styles.botonDer} {...p} />
+        )}
         onDone={handleDone}
         onSkip={handleDone}
-
-       
+        titleStyles={{ display: "none" }}
+        subTitleStyles={{ display: "none" }}
         pages={[
           {
             backgroundColor: "transparent",
@@ -57,8 +117,11 @@ export default function OnBoardingScreen() {
                     style={styles.lottieLOGO}
                     source={require("../../assets/animations/logo.json")}
                     autoPlay
+                    // loop por defecto; podés poner loop={false} si querés que corra una sola vez
+                    accessibilityIgnoresInvertColors
                   />
                   <Animated.Text
+                    accessibilityRole="header"
                     style={[styles.onboardingTitle, { opacity: fadeAnim }]}
                   >
                     El camino para empoderar tu nutrición
@@ -77,23 +140,26 @@ export default function OnBoardingScreen() {
                 style={styles.imageBackground}
                 resizeMode="cover"
               >
-                
                 <Animated.Text
-                    style={[styles.onboardingTitleVerde, { opacity: fadeAnim }]}
-                  >
-                    La alimentación es parte de tu bienestar
-                  </Animated.Text>
+                  accessibilityRole="header"
+                  style={[styles.onboardingTitleVerde, { opacity: fadeAnim }]}
+                >
+                  La alimentación es parte de tu bienestar
+                </Animated.Text>
 
-
-                <View style={styles.overlay}>
+                {/* Si querés reactivar el Lottie, descomentá y ajustá el source */}
+                {/* <View style={styles.overlay}>
                   <LottieView
                     style={styles.lottieIMG}
                     source={require("../../assets/animations/onboarding2.json")}
                     autoPlay
+                    accessibilityIgnoresInvertColors
                   />
-                </View>
+                </View> */}
                 <Text style={styles.subtituloAzul}>
-                  Acá vas a encontrar información clara sobre los alimentos, sin confusión ni miedo, para que tomes decisiones que realmente te sirvan
+                  Acá vas a encontrar información clara sobre los alimentos, sin
+                  confusión ni miedo, para que tomes decisiones que realmente te
+                  sirvan
                 </Text>
               </ImageBackground>
             ),
@@ -116,10 +182,12 @@ export default function OnBoardingScreen() {
                     style={styles.lottieIMG}
                     source={require("../../assets/animations/onboarding3.json")}
                     autoPlay
+                    accessibilityIgnoresInvertColors
                   />
                 </View>
                 <Text style={styles.subtituloVerde}>
-                  La clave es conocer qué te aporta cada producto y cómo incorporarlo de forma consciente
+                  La clave es conocer qué te aporta cada producto y cómo
+                  incorporarlo de forma consciente
                 </Text>
               </ImageBackground>
             ),
@@ -134,16 +202,21 @@ export default function OnBoardingScreen() {
                 style={styles.imageBackground}
                 resizeMode="cover"
               >
-                <Text style={styles.onboardingTitleVerde}>Escaneá y aprendé</Text>
+                <Text style={styles.onboardingTitleVerde}>
+                  Escaneá y aprendé
+                </Text>
                 <View style={styles.overlay}>
                   <LottieView
                     style={styles.lottieIMG}
                     source={require("../../assets/animations/onboarding4.json")}
                     autoPlay
+                    accessibilityIgnoresInvertColors
                   />
                 </View>
                 <Text style={styles.subtituloAzul}>
-                  Con esta función podés escanear un producto y recibir información en tiempo real sobre su valor nutricional y sus beneficios
+                  Con esta función podés escanear un producto y recibir
+                  información en tiempo real sobre su valor nutricional y sus
+                  beneficios
                 </Text>
               </ImageBackground>
             ),
@@ -159,7 +232,8 @@ export default function OnBoardingScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#8FD16C",
+    // Fondo toma la paleta del theme (ya no hardcodeado)
+    backgroundColor: UI.colors.bg,
     justifyContent: "center",
   },
   imageBackground: {
@@ -222,4 +296,6 @@ const styles = StyleSheet.create({
     color: COLORS.verdeOscuro,
     textAlign: "center",
   },
+  botonIzq: { marginLeft: 20, marginBottom: 6 }, // probá 16–28 según gusto
+  botonDer: { marginRight: 20, marginBottom: 6 }, // probá 16–28 según gusto
 });

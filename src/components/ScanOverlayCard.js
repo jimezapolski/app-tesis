@@ -1,61 +1,74 @@
-// src/components/ScanOverlayCard.js
-import React from "react";
-import { View, Text, Pressable } from "react-native";
+import React from 'react';
+import { View, Text, Pressable } from 'react-native';
+import { ui } from '../../constants/theme'; 
 
-export default function ScanOverlayCard({ product = {}, onPressMore, onClose }) {
-  const {
-    name = "Producto",
-    brand = "",
-    seals = [],
-    positive_ingredients = [],
-    nutrients_per_portion = {},
-  } = product;
 
-  const { proteinas_g, azucares_g, grasas_saturadas_g, calorias_kcal, portion } =
-    nutrients_per_portion || {};
+export default function ScanOverlayCard({ product, onPressMore, onClose }) {
+  const sellos = (product?.sellos ?? [])
+    .slice(0, 3)
+    .map((s) => (typeof s === 'string' ? s : [s?.tipo, s?.valor].filter(Boolean).join(': ')));
 
   return (
-    <View style={{
-      position: "absolute", left: 0, right: 0, bottom: 0,
-      padding: 16, backgroundColor: "rgba(0,0,0,0.78)"
-    }}>
-      <Text style={{ color: "#fff", fontSize: 16, fontWeight: "700" }}>
-        {name}{brand ? ` — ${brand}` : ""}
-      </Text>
-
-      {!!seals?.length && (
-        <>
-          <Text style={{ color: "#bdbdbd", marginTop: 8 }}>Sellos:</Text>
-          <Text style={{ color: "#fff" }}>{seals.join(", ")}</Text>
-        </>
-      )}
-
-      {!!positive_ingredients?.length && (
-        <>
-          <Text style={{ color: "#bdbdbd", marginTop: 8 }}>Ingrediente positivo:</Text>
-          <Text style={{ color: "#fff" }}>{positive_ingredients.join(", ")}</Text>
-        </>
-      )}
-
-      {proteinas_g != null && (
-        <Text style={{ color: "#fff", marginTop: 4 }}>
-          Proteínas: {proteinas_g} g{portion ? `/ ${portion}` : ""}
+    <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: ui.spacing.md }}>
+      <View
+        style={{
+          backgroundColor: 'rgba(17,17,17,0.72)',
+          borderRadius: ui.radii.xl,
+          padding: ui.spacing.md,
+          borderWidth: 1,
+          borderColor: 'rgba(255,255,255,0.10)',
+        }}
+      >
+        <Text numberOfLines={2} style={{ color: '#fff', fontSize: 16, fontWeight: '800' }}>
+          {product?.nombre ?? 'Producto'}
+          {product?.marca ? ` — ${product.marca}` : ''}
         </Text>
-      )}
 
-      <View style={{ flexDirection: "row", marginTop: 14, gap: 16 }}>
-        <Pressable
-          onPress={onPressMore}
-          style={{ backgroundColor: "#2e7d32", paddingVertical: 10, paddingHorizontal: 16, borderRadius: 10 }}
-        >
-          <Text style={{ color: "#fff", fontWeight: "700" }}>Ver más</Text>
-        </Pressable>
-        <Pressable
-          onPress={onClose}
-          style={{ backgroundColor: "rgba(255,255,255,0.12)", paddingVertical: 10, paddingHorizontal: 16, borderRadius: 10 }}
-        >
-          <Text style={{ color: "#fff" }}>Cerrar</Text>
-        </Pressable>
+        {!!sellos.length && (
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 8 }}>
+            {sellos.map((t, i) => (
+              <View
+                key={i}
+                style={{
+                  backgroundColor: 'rgba(255,255,255,0.14)',
+                  paddingVertical: 4,
+                  paddingHorizontal: 8,
+                  borderRadius: 999,
+                }}
+              >
+                <Text style={{ color: '#fff', fontSize: 12 }}>{t}</Text>
+              </View>
+            ))}
+          </View>
+        )}
+
+        <View style={{ flexDirection: 'row', gap: 10, marginTop: 12 }}>
+          <Pressable
+            onPress={onPressMore}
+            style={({ pressed }) => ({
+              backgroundColor: ui.colors.success,
+              paddingVertical: 10,
+              paddingHorizontal: 14,
+              borderRadius: 999,
+              opacity: pressed ? 0.9 : 1,
+            })}
+          >
+            <Text style={{ color: '#fff', fontWeight: '800' }}>Ver más</Text>
+          </Pressable>
+
+          <Pressable
+            onPress={onClose}
+            style={({ pressed }) => ({
+              backgroundColor: 'rgba(255,255,255,0.12)',
+              paddingVertical: 10,
+              paddingHorizontal: 14,
+              borderRadius: 999,
+              opacity: pressed ? 0.8 : 1,
+            })}
+          >
+            <Text style={{ color: '#fff', fontWeight: '700' }}>Cerrar</Text>
+          </Pressable>
+        </View>
       </View>
     </View>
   );

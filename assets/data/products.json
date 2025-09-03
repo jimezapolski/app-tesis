@@ -145,12 +145,12 @@
     },
     {
       "barcode": "7791337010017",
-      "name": "Yogur griego natural sin endulzar 300 g — Yogurísimo",
+      "nombre": "Yogur griego natural sin endulzar 300 g — Yogurísimo",
       "brand": "Yogurísimo",
       "size": "300 g",
       "category": "Lácteos / Yogures",
-      "seals": [],
-      "positive_ingredients": ["Proteínas", "Cultivos vivos"],
+      "seals": ["Contiende edulcorantes"],
+      "ingredientePositivo": ["Proteínas", "Cultivos vivos"],
       "nutrients_per_portion": {
         "portion": "150 g",
         "azucares_g": 5,

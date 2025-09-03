@@ -20,6 +20,31 @@ export default function HomeScreen({ navigation }) {
       >
         <Text style={{ color: "#fff", fontWeight: "700" }}>Abrir escáner</Text>
       </Pressable>
+      <Pressable
+        onPress={() => navigation.navigate('History')}
+        accessibilityRole="button"
+        accessibilityLabel="Ver historial de escaneos"
+        style={({ pressed }) => ({
+          opacity: pressed ? 0.85 : 1,
+          marginTop: 16,
+          padding: 16,
+          borderRadius: 14,
+          borderWidth: 1,
+          borderColor: '#eaeaea',
+          backgroundColor: '#f9f9f9',
+          shadowColor: '#000',
+          shadowOpacity: 0.05,
+          shadowRadius: 6,
+          shadowOffset: { width: 0, height: 2 },
+        })}
+      >
+        <Text style={{ fontSize: 16, fontWeight: '800', marginBottom: 4 }}>
+          Historial de escaneos
+        </Text>
+        <Text style={{ fontSize: 13, color: '#555' }}>
+          Consultá los productos que escaneaste recientemente.
+        </Text>
+        </Pressable>
     </View>
   );
 }

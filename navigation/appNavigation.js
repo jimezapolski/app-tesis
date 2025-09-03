@@ -6,6 +6,7 @@ import OnBoardingScreen from '../screens/onboarding/OnBoardingScreen';
 import { getItem } from '../screens/utils/asyncStorage'; // Asegurate que la ruta sea correcta
 import ScanScreen from "../screens/scan/ScanScreen";
 import ProductDetailsScreen from "../screens/scan/ProductDetailsScreen";
+import HistoryScreen from '../screens/history/HistoryScreen';
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,8 @@ export default function AppNavigation() {
                 <Stack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
                 <Stack.Screen name="Scan" component={ScanScreen} options={{ title: "Escanear producto" }} />
                 <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} options={{ title: "Producto" }} />
+                <Stack.Screen name="History" component={HistoryScreen} options={{ title: 'Historial' }} /> 
+
             </Stack.Navigator>
         </NavigationContainer>
     );

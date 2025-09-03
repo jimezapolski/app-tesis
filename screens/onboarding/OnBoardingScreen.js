@@ -49,11 +49,11 @@ export default function OnBoardingScreen() {
                 resizeMode="cover"
               >
                 <View style={styles.overlay}>
-                  {/* <Image
+                   <Image
                     style={styles.heroLogo}
-                    source={require("../../assets/illustrations/logo.png")}
+                    source={require("../../assets/logo.png")}
                     resizeMode="contain"
-                  /> */}
+                  /> 
                   <Animated.Text
                     style={[styles.onboardingTitle, { opacity: fadeAnim }]}
                   >
@@ -80,11 +80,11 @@ export default function OnBoardingScreen() {
                 </Animated.Text>
 
                 <View style={styles.overlay}>
-                  {/* <Image
+                   <Image
                     style={styles.heroImage}
-                    source={require("../../assets/illustrations/onboarding2.png")}
+                    source={require("../../assets/img-onboarding/onboarding2.png")}
                     resizeMode="contain"
-                  /> */}
+                  /> 
                 </View>
                 <Text style={styles.subtituloAzul}>
                   Acá vas a encontrar información clara sobre los alimentos, sin
@@ -108,11 +108,11 @@ export default function OnBoardingScreen() {
                   No se trata de eliminar alimentos, sino de entenderlos
                 </Text>
                 <View style={styles.overlay}>
-                  {/* <Image
+                 <Image
                     style={styles.heroImage}
-                    source={require("../../assets/illustrations/onboarding3.png")}
+                    source={require("../../assets/img-onboarding/onboarding3.png")}
                     resizeMode="contain"
-                  /> */}
+                  /> 
                 </View>
                 <Text style={styles.subtituloVerde}>
                   La clave es conocer qué te aporta cada producto y cómo
@@ -133,11 +133,11 @@ export default function OnBoardingScreen() {
               >
                 <Text style={styles.onboardingTitleVerde}>Escaneá y aprendé</Text>
                 <View style={styles.overlay}>
-                  {/* <Image
+                  <Image
                     style={styles.heroImage}
-                    source={require("../../assets/illustrations/onboarding4.png")}
+                    source={require("../../assets/img-onboarding/onboarding4.png")}
                     resizeMode="contain"
-                  /> */}
+                  />
                 </View>
                 <Text style={styles.subtituloAzul}>
                   Con esta función podés escanear un producto y recibir
@@ -173,13 +173,13 @@ const styles = StyleSheet.create({
   },
   heroLogo: {
     width,
-    height: height * 0.28, // antes Lottie; ahora imagen estática
+    height: height * 0.12, 
     position: "absolute",
-    top: height * 0.12,
+    top: height * 0.45,
   },
   heroImage: {
     width,
-    height: height * 0.35,
+    height: height * 0.25,
     alignSelf: "center",
     marginBottom: 10,
   },

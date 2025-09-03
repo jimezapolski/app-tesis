@@ -4,6 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/home/HomeScreen';
 import OnBoardingScreen from '../screens/onboarding/OnBoardingScreen';
 import { getItem } from '../screens/utils/asyncStorage'; // Asegurate que la ruta sea correcta
+import ScanScreen from "../screens/scan/ScanScreen";
+import ProductDetailsScreen from "../screens/scan/ProductDetailsScreen";
 
 const Stack = createStackNavigator();
 
@@ -37,6 +39,8 @@ export default function AppNavigation() {
             <Stack.Navigator initialRouteName={showOnboarding ? "Onboarding" : "Home"}>
                 <Stack.Screen name="Onboarding" options={{ headerShown: false }} component={OnBoardingScreen} />
                 <Stack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
+                <Stack.Screen name="Scan" component={ScanScreen} options={{ title: "Escanear producto" }} />
+                <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} options={{ title: "Producto" }} />
             </Stack.Navigator>
         </NavigationContainer>
     );

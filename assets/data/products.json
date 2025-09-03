@@ -1,0 +1,163 @@
+[
+    {
+      "barcode": "7790000000001",
+      "nombre": "Yogur Batido SER Pro+ Con Proteínas Sabor Natural 175g",
+      "marca": "SER",
+      "sellos": ["Exceso en azúcares"],
+      "ingredientePositivo": "Proteínas",
+      "nutrienteClave": { "tipo": "Proteínas", "valor": "12 g/porción" },
+      "tablaResumida": { "calorias": "110 kcal", "grasasSaturadas": "1 g", "azucares": "9 g", "proteinas": "12 g" }
+    },
+    {
+      "barcode": "7790000000002",
+      "nombre": "Yogur Natural BEAUDROIT Sin Azúcar 400g",
+      "marca": "Beaudroit",
+      "sellos": [],
+      "ingredientePositivo": "Cultivos naturales",
+      "nutrienteClave": { "tipo": "Azúcares añadidos", "valor": "0 g" },
+      "tablaResumida": { "calorias": "90 kcal", "grasasSaturadas": "1 g", "azucares": "3 g", "proteinas": "7 g" }
+    },
+    {
+      "barcode": "7790000000003",
+      "nombre": "Dulce De Leche MILKAUT Clásico 400g",
+      "marca": "Milkaut",
+      "sellos": ["Exceso en azúcares", "Exceso en grasas saturadas"],
+      "ingredientePositivo": "Calcio",
+      "nutrienteClave": { "tipo": "Azúcares añadidos", "valor": "25 g/porción" },
+      "tablaResumida": { "calorias": "300 kcal", "grasasSaturadas": "7 g", "azucares": "25 g", "proteinas": "6 g" }
+    },
+    {
+      "barcode": "7790000000004",
+      "nombre": "Mermelada Frutilla El Brocal 400g",
+      "marca": "El Brocal",
+      "sellos": ["Exceso en azúcares"],
+      "ingredientePositivo": "Fruta",
+      "nutrienteClave": { "tipo": "Azúcares añadidos", "valor": "18 g/porción" },
+      "tablaResumida": { "calorias": "220 kcal", "grasasSaturadas": "0 g", "azucares": "18 g", "proteinas": "0 g" }
+    },
+    {
+      "barcode": "7790000000005",
+      "nombre": "Queso Rallado ILOLAY 120g",
+      "marca": "Ilolay",
+      "sellos": ["Exceso en sodio"],
+      "ingredientePositivo": "Calcio",
+      "nutrienteClave": { "tipo": "Sodio", "valor": "480 mg/porción" },
+      "tablaResumida": { "calorias": "120 kcal", "grasasSaturadas": "5 g", "azucares": "1 g", "proteinas": "9 g" }
+    },
+    {
+      "barcode": "7790000000006",
+      "nombre": "Mix Energético Pot 135g",
+      "marca": "Coto",
+      "sellos": ["Exceso en calorías"],
+      "ingredientePositivo": "Frutos secos",
+      "nutrienteClave": { "tipo": "Fibra", "valor": "4 g/porción" },
+      "tablaResumida": { "calorias": "250 kcal", "grasasSaturadas": "3 g", "azucares": "12 g", "proteinas": "8 g" }
+    },
+    {
+      "barcode": "7790000000007",
+      "nombre": "Milanesas De Soja Rellenas De Calabaza Y Queso Granja Del Sol 380g",
+      "marca": "Granja del Sol",
+      "sellos": ["Exceso en sodio"],
+      "ingredientePositivo": "Proteínas vegetales",
+      "nutrienteClave": { "tipo": "Proteínas", "valor": "10 g/porción" },
+      "tablaResumida": { "calorias": "190 kcal", "grasasSaturadas": "3 g", "azucares": "4 g", "proteinas": "10 g" }
+    },
+    {
+      "barcode": "7790000000008",
+      "nombre": "Milanesas De Soja Con Calabaza Vegetalex 340g",
+      "marca": "Vegetalex",
+      "sellos": [],
+      "ingredientePositivo": "Proteínas vegetales",
+      "nutrienteClave": { "tipo": "Proteínas", "valor": "9 g/porción" },
+      "tablaResumida": { "calorias": "180 kcal", "grasasSaturadas": "2 g", "azucares": "3 g", "proteinas": "9 g" }
+    },
+    {
+      "barcode": "7790000000009",
+      "nombre": "Chips De Banana Conosur 200g",
+      "marca": "Conosur",
+      "sellos": ["Exceso en azúcares"],
+      "ingredientePositivo": "Potasio",
+      "nutrienteClave": { "tipo": "Azúcares", "valor": "15 g/porción" },
+      "tablaResumida": { "calorias": "210 kcal", "grasasSaturadas": "2 g", "azucares": "15 g", "proteinas": "2 g" }
+    },
+    {
+      "barcode": "7790000000010",
+      "nombre": "Barra De Cereal Cerealmix Chocolate 23g",
+      "marca": "Cerealmix",
+      "sellos": ["Exceso en azúcares"],
+      "ingredientePositivo": "Fibra",
+      "nutrienteClave": { "tipo": "Azúcares añadidos", "valor": "10 g" },
+      "tablaResumida": { "calorias": "100 kcal", "grasasSaturadas": "1 g", "azucares": "10 g", "proteinas": "1 g" }
+    },
+    {
+      "barcode": "7790000000011",
+      "nombre": "Galletitas De Avena Almendra Y Maní CACHAFAZ 225g",
+      "marca": "Cachafaz",
+      "sellos": ["Exceso en calorías", "Exceso en grasas saturadas"],
+      "ingredientePositivo": "Fibra y frutos secos",
+      "nutrienteClave": { "tipo": "Grasas saturadas", "valor": "6 g/porción" },
+      "tablaResumida": { "calorias": "240 kcal", "grasasSaturadas": "6 g", "azucares": "14 g", "proteinas": "4 g" }
+    },
+    {
+      "barcode": "7790000000012",
+      "nombre": "Tostadas Arroz Dos Hnos. Bsa 120g",
+      "marca": "Dos Hnos",
+      "sellos": [],
+      "ingredientePositivo": "Bajo en calorías",
+      "nutrienteClave": { "tipo": "Calorías", "valor": "35 kcal/porción" },
+      "tablaResumida": { "calorias": "35 kcal", "grasasSaturadas": "0 g", "azucares": "0 g", "proteinas": "1 g" }
+    },
+    {
+      "barcode": "7790000000013",
+      "nombre": "Suplemento En Barra Sabor Brownie Low Carb 45g",
+      "marca": "Low Carb",
+      "sellos": [],
+      "ingredientePositivo": "Proteínas",
+      "nutrienteClave": { "tipo": "Proteínas", "valor": "15 g" },
+      "tablaResumida": { "calorias": "150 kcal", "grasasSaturadas": "2 g", "azucares": "1 g", "proteinas": "15 g" }
+    },
+    {
+      "barcode": "7790000000014",
+      "nombre": "Barra De Avena Cacao Chocolate Íntegra 40g",
+      "marca": "Íntegra",
+      "sellos": ["Exceso en azúcares"],
+      "ingredientePositivo": "Fibra",
+      "nutrienteClave": { "tipo": "Fibra", "valor": "3 g" },
+      "tablaResumida": { "calorias": "160 kcal", "grasasSaturadas": "2 g", "azucares": "12 g", "proteinas": "3 g" }
+    },
+    {
+      "barcode": "7790000000015",
+      "nombre": "Jamón Cocido Genuino Feteado Cagnoli 120g",
+      "marca": "Cagnoli",
+      "sellos": ["Exceso en sodio"],
+      "ingredientePositivo": "Proteínas animales",
+      "nutrienteClave": { "tipo": "Sodio", "valor": "650 mg/porción" },
+      "tablaResumida": { "calorias": "100 kcal", "grasasSaturadas": "2 g", "azucares": "0 g", "proteinas": "10 g" }
+    },
+    {
+      "barcode": "7790000000016",
+      "nombre": "Chocolate con Maní COFLER 300g",
+      "marca": "Cofler",
+      "sellos": ["Exceso en azúcares", "Exceso en grasas saturadas"],
+      "ingredientePositivo": "Maní",
+      "nutrienteClave": { "tipo": "Azúcares añadidos", "valor": "20 g/porción" },
+      "tablaResumida": { "calorias": "280 kcal", "grasasSaturadas": "8 g", "azucares": "20 g", "proteinas": "5 g" }
+    },
+    {
+      "barcode": "7791337010017",
+      "name": "Yogur griego natural sin endulzar 300 g — Yogurísimo",
+      "brand": "Yogurísimo",
+      "size": "300 g",
+      "category": "Lácteos / Yogures",
+      "seals": [],
+      "positive_ingredients": ["Proteínas", "Cultivos vivos"],
+      "nutrients_per_portion": {
+        "portion": "150 g",
+        "azucares_g": 5,
+        "grasas_saturadas_g": 3,
+        "calorias_kcal": 120,
+        "proteinas_g": 15
+      }
+    }
+  ]
+  

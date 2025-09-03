@@ -7,9 +7,9 @@ import {
   ImageBackground,
   Animated,
   TouchableOpacity,
+  Image, 
 } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
-import LottieView from "lottie-react-native";
 import { COLORS, FONTS } from "../../constants/theme";
 import { useNavigation } from "@react-navigation/native";
 import { setItem } from "../utils/asyncStorage";
@@ -18,12 +18,11 @@ const { width, height } = Dimensions.get("window");
 
 export default function OnBoardingScreen() {
   const navigation = useNavigation();
-
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const handleDone = () => {
     navigation.navigate("Home");
-    setItem("onboarded", '1');
+    setItem("onboarded", "1");
   };
 
   useEffect(() => {
@@ -38,11 +37,8 @@ export default function OnBoardingScreen() {
   return (
     <View style={styles.container}>
       <Onboarding
-
         onDone={handleDone}
         onSkip={handleDone}
-
-       
         pages={[
           {
             backgroundColor: "transparent",
@@ -53,11 +49,11 @@ export default function OnBoardingScreen() {
                 resizeMode="cover"
               >
                 <View style={styles.overlay}>
-                  <LottieView
-                    style={styles.lottieLOGO}
-                    source={require("../../assets/animations/logo.json")}
-                    autoPlay
-                  />
+                  {/* <Image
+                    style={styles.heroLogo}
+                    source={require("../../assets/illustrations/logo.png")}
+                    resizeMode="contain"
+                  /> */}
                   <Animated.Text
                     style={[styles.onboardingTitle, { opacity: fadeAnim }]}
                   >
@@ -77,23 +73,23 @@ export default function OnBoardingScreen() {
                 style={styles.imageBackground}
                 resizeMode="cover"
               >
-                
                 <Animated.Text
-                    style={[styles.onboardingTitleVerde, { opacity: fadeAnim }]}
-                  >
-                    La alimentación es parte de tu bienestar
-                  </Animated.Text>
-
+                  style={[styles.onboardingTitleVerde, { opacity: fadeAnim }]}
+                >
+                  La alimentación es parte de tu bienestar
+                </Animated.Text>
 
                 <View style={styles.overlay}>
-                  <LottieView
-                    style={styles.lottieIMG}
-                    source={require("../../assets/animations/onboarding2.json")}
-                    autoPlay
-                  />
+                  {/* <Image
+                    style={styles.heroImage}
+                    source={require("../../assets/illustrations/onboarding2.png")}
+                    resizeMode="contain"
+                  /> */}
                 </View>
                 <Text style={styles.subtituloAzul}>
-                  Acá vas a encontrar información clara sobre los alimentos, sin confusión ni miedo, para que tomes decisiones que realmente te sirvan
+                  Acá vas a encontrar información clara sobre los alimentos, sin
+                  confusión ni miedo, para que tomes decisiones que realmente te
+                  sirvan
                 </Text>
               </ImageBackground>
             ),
@@ -112,14 +108,15 @@ export default function OnBoardingScreen() {
                   No se trata de eliminar alimentos, sino de entenderlos
                 </Text>
                 <View style={styles.overlay}>
-                  <LottieView
-                    style={styles.lottieIMG}
-                    source={require("../../assets/animations/onboarding3.json")}
-                    autoPlay
-                  />
+                  {/* <Image
+                    style={styles.heroImage}
+                    source={require("../../assets/illustrations/onboarding3.png")}
+                    resizeMode="contain"
+                  /> */}
                 </View>
                 <Text style={styles.subtituloVerde}>
-                  La clave es conocer qué te aporta cada producto y cómo incorporarlo de forma consciente
+                  La clave es conocer qué te aporta cada producto y cómo
+                  incorporarlo de forma consciente
                 </Text>
               </ImageBackground>
             ),
@@ -136,14 +133,16 @@ export default function OnBoardingScreen() {
               >
                 <Text style={styles.onboardingTitleVerde}>Escaneá y aprendé</Text>
                 <View style={styles.overlay}>
-                  <LottieView
-                    style={styles.lottieIMG}
-                    source={require("../../assets/animations/onboarding4.json")}
-                    autoPlay
-                  />
+                  {/* <Image
+                    style={styles.heroImage}
+                    source={require("../../assets/illustrations/onboarding4.png")}
+                    resizeMode="contain"
+                  /> */}
                 </View>
                 <Text style={styles.subtituloAzul}>
-                  Con esta función podés escanear un producto y recibir información en tiempo real sobre su valor nutricional y sus beneficios
+                  Con esta función podés escanear un producto y recibir
+                  información en tiempo real sobre su valor nutricional y sus
+                  beneficios
                 </Text>
               </ImageBackground>
             ),
@@ -163,8 +162,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   imageBackground: {
-    width: width,
-    height: height,
+    width,
+    height,
   },
   overlay: {
     flex: 1,
@@ -172,14 +171,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
   },
-  lottieLOGO: {
-    width: width,
-    height: height * 0.5,
+  heroLogo: {
+    width,
+    height: height * 0.28, // antes Lottie; ahora imagen estática
     position: "absolute",
+    top: height * 0.12,
   },
-  lottieIMG: {
-    width: width,
-    height: height * 0.4,
+  heroImage: {
+    width,
+    height: height * 0.35,
     alignSelf: "center",
     marginBottom: 10,
   },

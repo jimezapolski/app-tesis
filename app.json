@@ -15,22 +15,25 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.anonymous.apptesis",
-       "infoPlist": {
-      "NSCameraUsageDescription": "La cámara se utiliza para escanear productos."
+      "infoPlist": {
+        "NSCameraUsageDescription": "La cámara se utiliza para escanear productos."
+      },
+      "android": {
+        "adaptiveIcon": {
+          "foregroundImage": "./assets/adaptive-icon.png",
+          "backgroundColor": "#ffffff"
+        },
+        "package": "com.anonymous.apptesis"
+      },
+      "web": {
+        "favicon": "./assets/favicon.png"
+      },
+      "plugins": [
+        "expo-font"
+      ]
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
       "package": "com.anonymous.apptesis"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-font"
-    ]
+    }
   }
-}
 }

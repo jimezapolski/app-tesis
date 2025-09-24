@@ -39,11 +39,15 @@
     "react-native-screens": "~4.11.1",
     "react-native-svg": "^15.11.2",
     "react-native-web": "^0.20.0",
+    "react-viro": "^2.17.0",
     "styled-components": "5.3.11",
     "twrnc": "^4.6.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@expo/metro-config": "^54.0.5",
+    "@react-native-community/cli": "^20.0.2",
+    "@react-native-community/cli-plugin-metro": "^12.3.6"
   },
   "private": true
 }

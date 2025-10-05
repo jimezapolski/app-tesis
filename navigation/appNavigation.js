@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/home/HomeScreen';
 import OnBoardingScreen from '../screens/onboarding/OnBoardingScreen';
-import { getItem } from '../screens/utils/asyncStorage'; // Asegurate que la ruta sea correcta
+import { getItem } from '../src/utils/asyncStorage';
 import ScanScreen from "../screens/scan/ScanScreen";
 import ProductDetailsScreen from "../screens/scan/ProductDetailsScreen";
 import HistoryScreen from '../screens/history/HistoryScreen';

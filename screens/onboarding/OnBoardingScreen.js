@@ -12,7 +12,7 @@ import {
 import Onboarding from "react-native-onboarding-swiper";
 import { COLORS, FONTS } from "../../constants/theme";
 import { useNavigation } from "@react-navigation/native";
-import { setItem } from "../utils/asyncStorage";
+import { setItem }from "../../src/utils/asyncStorage";
 
 const { width, height } = Dimensions.get("window");
 

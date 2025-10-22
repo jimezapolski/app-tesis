@@ -252,23 +252,12 @@
     "size": "300 g",
     "category": "Lácteos / Yogures",
     "keywords": ["yogurisimo","serenisima","griego","conicet","probioticos","sin endulzar"],
-    "aliases": ["Yogurisimo"]
-  },
-  {
-    "barcode": "7791234567890",
-    "marca": "MarcaX",
-    "nombre": "Galletitas Avena",
-    "ingredients": "Avena, azúcar, aceite vegetal, sal...",
-    "allergens": ["Gluten"],
-    "ultraProcessed": true,
-    "nutrition": { "sugar_g_per_100g": 24, "salt_g_per_100g": 0.6, "fat_g_per_100g": 12 },
-    "claims": ["Sin TACC*", "Fuente de fibra"],
-    "brand": "MarcaX",
-    "name": "Galletitas de Avena",
-    "size": null,
-    "category": "Snacks / Galletitas",
-    "keywords": ["galletitas", "avena", "cookies"],
-    "aliases": []
+    "aliases": ["Yogurisimo"],
+    "cards": {
+      "positivo": "Buena fuente de proteínas y cultivos vivos, ayuda a mantener una microbiota intestinal equilibrada.",
+      "recomendacion": "Combiná este yogur con frutas frescas o granola sin azúcar para un desayuno completo.",
+      "alerta": "Aunque no tiene azúcares añadidos, controlá las porciones si estás siguiendo un plan bajo en grasas."
+    }
   },
   {
     "barcode": "7798415092033",
@@ -284,7 +273,12 @@
     "size": null,
     "category": "Snacks",
     "keywords": ["datiles", "mani", "snacks", "nutritiva", "RAW", "A BASE DE PLANTAS"],
-    "aliases": ["Diabla"]
+    "aliases": ["Diabla"],
+    "cards": {
+      "positivo": "El dátil y el maní aportan energía natural y fibra. No contiene azúcares refinados ni harinas procesadas.",
+      "recomendacion": "Ideal como snack pre-entrenamiento o para media tarde como algo dulce. Combiná con agua o infusión para mejorar la saciedad.",
+      "alerta": "Aunque es natural, sigue siendo calórico: una porción alcanza para recargar energía sin exceso."
+    }
   },
   {
     "barcode": "77940131",
@@ -301,7 +295,12 @@
     "size": null,
     "category": "Snacks",
     "keywords": ["turron", "mani", "Arcor", "98 kcal", "alimento para toda hora"],
-    "aliases": ["Turron Arcor"]
+    "aliases": ["Turron Arcor"],
+    "cards": {
+      "positivo": "El maní aporta energía y proteínas vegetales, ideales para momentos de mucha actividad.",
+      "recomendacion": "Podés disfrutarlo como golosina ocasional. Acompañalo con proteína o una fruta fresca para equilibrar el azúcar.",
+      "alerta": "Contiene bastantes azúcares añadidos y calorías concentradas: preferí una porción pequeña para evitar picos de energía."
+    }
   }
 
 ]

@@ -1,294 +1,11 @@
-// import React, { useCallback, useRef, useState } from "react";
-// import { View, Text, ActivityIndicator } from "react-native";
-// import { CameraView, useCameraPermissions } from "expo-camera";
-// import { getProductByBarcode } from "../../src/services/products";
-// import ARInfoOverlay from "../../src/components/ARInfoOverlay";
-
-// export default function ScanScreen({ navigation }) {
-//   const [permission, requestPermission] = useCameraPermissions();
-//   const [scanned, setScanned] = useState(false);
-//   const [detectedProduct, setDetectedProduct] = useState(null);
-//   const busyRef = useRef(false);
-
-//   const handleScanned = useCallback(async ({ data /*, type*/ }) => {
-//     if (busyRef.current) return;
-//     busyRef.current = true;
-//     setScanned(true);
-//     try {
-//       const product = await getProductByBarcode(data);
-//       setDetectedProduct(product);
-
-//       navigation.navigate("ProductDetails", { product, code: data });
-//     } catch (e) {
-//       setDetectedProduct(null);
-//       setScanned(false);
-//       busyRef.current = false;
-//       console.warn(e);
-//     }
-//   }, []);
-
-//   // permisos
-//   if (!permission) return <View style={{ flex: 1 }} />;
-//   if (!permission.granted) {
-//     return (
-//       <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 24 }}>
-//         <Text style={{ fontSize: 16, textAlign: "center" }}>
-//           Necesitamos acceso a la cámara para escanear.
-//         </Text>
-//         <Text onPress={requestPermission} style={{ marginTop: 12, fontSize: 16 }}>
-//           ➜ Conceder permiso
-//         </Text>
-//       </View>
-//     );
-//   }
-
-//   return (
-//     <View style={{ flex: 1, backgroundColor: "black" }}>
-//       <CameraView
-//         style={{ flex: 1 }}
-//         facing="back"
-//         // Usa UNO de estos dos según tu SDK;
-//         // si no dispara con el primero, probá el segundo:
-//         onBarcodeScanned={scanned ? undefined : handleScanned}
-//         // onBarCodeScanned={scanned ? undefined : handleScanned}
-//         barcodeScannerSettings={{
-//           barcodeTypes: ["ean13", "ean8", "upc_a", "upc_e", "code128", "qr"],
-//         }}
-//       />
-
-//       {/* Overlay RA con la info clara */}
-//       {detectedProduct ? <ARInfoOverlay product={detectedProduct} /> : null}
-
-//       {!scanned && (
-//         <View style={{ position: "absolute", bottom: 40, left: 0, right: 0, alignItems: "center" }}>
-//           <Text style={{ color: "white", fontSize: 16 }}>Alineá el código dentro del marco</Text>
-//           <ActivityIndicator style={{ marginTop: 8 }} />
-//         </View>
-//       )}
-//     </View>
-//   );
-// }
-
-// // screens/scan/ScanScreen.js
-// import React, { useCallback, useEffect, useRef, useState } from "react";
-// import {
-//   ActivityIndicator,
-//   Platform,
-//   StyleSheet,
-//   Text,
-//   View,
-//   TouchableOpacity,
-// } from "react-native";
-// import { CameraView, useCameraPermissions } from "expo-camera";
-// import * as Haptics from "expo-haptics";
-
-// // OCR + matcher (nuestro wrapper JS; si el nativo no está, devuelve [])
-// import { recognize, matchProductByText } from "../../src/native/TextRecognizer";
-
-// // ⚠️ Usa la ruta REAL donde guardaste tu JSON.
-// // Según tus capturas, está en assets/data/products.json
-// import rawProducts from "../../assets/data/products.json";
-
-// // Normalizamos claves en español/inglés y palabras clave
-// const CATALOG = rawProducts.map((p) => ({
-//   ...p,
-//   brand: p.brand ?? p.marca ?? "",
-//   name: p.name ?? p.nombre ?? "",
-//   keywords: p.keywords ?? p.claims ?? [],
-// }));
-
-// export default function ScanScreen({ navigation }) {
-//   const camRef = useRef(null);
-
-//   // Permisos
-//   const [permission, requestPermission] = useCameraPermissions();
-//   const [isReady, setIsReady] = useState(false);
-
-//   // Estado UI
-//   const [busy, setBusy] = useState(false);
-//   const [message, setMessage] = useState("Alineá la etiqueta dentro del marco");
-//   const [lastText, setLastText] = useState("");
-//   const [detectedProduct, setDetectedProduct] = useState(null);
-
-//   // Pide permisos al montar
-//   useEffect(() => {
-//     (async () => {
-//       if (!permission || !permission.granted) {
-//         await requestPermission();
-//       }
-//       setIsReady(true);
-//     })();
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, []);
-
-//   const doScan = useCallback(async () => {
-//     if (busy || !camRef.current) return;
-//     setBusy(true);
-//     setMessage("Analizando…");
-
-//     try {
-//       // Foto rápida con base64 para pasar al reconocedor
-//       const photo = await camRef.current.takePictureAsync({
-//            base64: true,
-//           quality: 0.7,          // un poco más nítido
-//          exif: false,
-//         skipProcessing: false, // que iOS aplique orientación
-//        });
-
-//       const lines = await recognize(photo.base64); // ← devuelve array de líneas o []
-//       const textPreview = Array.isArray(lines) ? lines.slice(0, 4).join(" · ") : String(lines || "");
-//       setLastText(textPreview);
-
-//       const product = matchProductByText(lines, CATALOG); // ← buscador difuso (Jaccard)
-//       if (product) {
-//         setDetectedProduct(product);
-//         setMessage("¡Producto encontrado!");
-//         await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-
-//         // Si querés navegar automáticamente al detalle, descomentá:
-//         // navigation.navigate("ProductDetails", { product });
-//       } else {
-//         setDetectedProduct(null);
-//         setMessage("No se reconoció el producto. Probá acercarte o centrar mejor.");
-//         await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-//       }
-//     } catch (e) {
-//       setDetectedProduct(null);
-//       setMessage("Error al analizar la imagen.");
-//     } finally {
-//       setBusy(false);
-//     }
-//   }, [busy, navigation]);
-
-//   if (!isReady || !permission) {
-//     return (
-//       <View style={styles.center}>
-//         <ActivityIndicator />
-//         <Text style={styles.note}>Preparando cámara…</Text>
-//       </View>
-//     );
-//   }
-
-//   if (!permission.granted) {
-//     return (
-//       <View style={styles.center}>
-//         <Text style={styles.title}>Se requiere permiso de cámara</Text>
-//         <TouchableOpacity style={styles.btn} onPress={requestPermission}>
-//           <Text style={styles.btnText}>Conceder permiso</Text>
-//         </TouchableOpacity>
-//       </View>
-//     );
-//   }
-
-//   return (
-//     <View style={styles.container}>
-//       <CameraView
-//         ref={camRef}
-//         facing="back"
-//         style={StyleSheet.absoluteFill}
-//         enableZoomGesture
-//       />
-
-//       {/* Marco/retícula simple */}
-//       <View pointerEvents="none" style={styles.reticle} />
-
-//       {/* Panel AR con info básica cuando hay match */}
-//       {detectedProduct ? (
-//         <View style={styles.infoCard}>
-//           <Text style={styles.productName}>
-//             {detectedProduct.brand} — {detectedProduct.name || detectedProduct.nombre}
-//           </Text>
-
-//           {/* Resumen mínimo (adaptado a tus claves) */}
-//           {detectedProduct.tablaResumida && (
-//             <Text style={styles.sub}>
-//               {`Calorías: ${detectedProduct.tablaResumida.calorias} · Azúcares: ${detectedProduct.tablaResumida.azucares} · Prot.: ${detectedProduct.tablaResumida.proteinas}`}
-//             </Text>
-//           )}
-
-//           {Array.isArray(detectedProduct.sellos) && detectedProduct.sellos.length > 0 && (
-//             <Text style={styles.warn}>Sellos: {detectedProduct.sellos.join(" · ")}</Text>
-//           )}
-//         </View>
-//       ) : null}
-
-//       {/* Overlay de estado y diagnóstico del OCR */}
-//       <View style={styles.bottomBar}>
-//         <Text style={styles.status}>{message}</Text>
-//         {!!lastText && <Text style={styles.ocrPreview}>{lastText}</Text>}
-
-//         <TouchableOpacity
-//           style={[styles.btn, busy && { opacity: 0.6 }]}
-//           onPress={doScan}
-//           disabled={busy}
-//         >
-//           <Text style={styles.btnText}>{busy ? "Analizando…" : "Escanear"}</Text>
-//         </TouchableOpacity>
-//       </View>
-//     </View>
-//   );
-// }
-
-// /* ==== Estilos ==== */
-// const styles = StyleSheet.create({
-//   container: { flex: 1, backgroundColor: "#000" },
-//   center: {
-//     flex: 1,
-//     alignItems: "center",
-//     justifyContent: "center",
-//     padding: 24,
-//     backgroundColor: "#000",
-//   },
-//   title: { color: "#fff", fontSize: 18, marginBottom: 12, textAlign: "center" },
-//   note: { color: "#bbb", marginTop: 12 },
-//   reticle: {
-//     position: "absolute",
-//     left: 24,
-//     right: 24,
-//     top: "22%",
-//     height: "36%",
-//     borderWidth: 2,
-//     borderColor: "rgba(255,255,255,0.8)",
-//     borderRadius: 16,
-//   },
-//   infoCard: {
-//     position: "absolute",
-//     top: 32,
-//     left: 16,
-//     right: 16,
-//     backgroundColor: "rgba(0,0,0,0.55)",
-//     padding: 12,
-//     borderRadius: 12,
-//   },
-//   productName: { color: "#fff", fontSize: 16, fontWeight: "600" },
-//   sub: { color: "#ddd", marginTop: 6, fontSize: 13 },
-//   warn: { color: "#ffcd4d", marginTop: 6, fontSize: 13 },
-//   bottomBar: {
-//     position: "absolute",
-//     bottom: 18,
-//     left: 12,
-//     right: 12,
-//     backgroundColor: "rgba(0,0,0,0.6)",
-//     borderRadius: 12,
-//     padding: 12,
-//   },
-//   status: { color: "#fff", fontSize: 14, marginBottom: 6 },
-//   ocrPreview: { color: "#ccc", fontSize: 12, marginBottom: 10 },
-//   btn: {
-//     alignSelf: "center",
-//     backgroundColor: "#3d82ff",
-//     borderRadius: 10,
-//     paddingVertical: 10,
-//     paddingHorizontal: 18,
-//   },
-//   btnText: { color: "#fff", fontWeight: "600" },
-// });
 
 // screens/scan/ScanScreen.js
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ActivityIndicator, Platform, StyleSheet, Text, View } from "react-native";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import * as Haptics from "expo-haptics";
+import ProductCards from "../../src/components/ProductCards";
+
 
 import { recognize, matchProductByText } from "../../src/native/TextRecognizer";
 import products from "../../assets/data/products.json";
@@ -452,7 +169,7 @@ export default function ScanScreen() {
         <View style={styles.frame} />
       </View>
 
-      {detectedProduct && (
+      {/* {detectedProduct && (
         <View style={styles.productCard}>
           <Text style={styles.productTitle}>
             {(detectedProduct.marca || detectedProduct.brand || "").trim()} —{" "}
@@ -470,8 +187,14 @@ export default function ScanScreen() {
             </Text>
           )}
         </View>
-      )}
-
+      )} */}
+      {/* Overlay de cards cuando hay match */}
+    {detectedProduct && (
+      <ProductCards
+        product={detectedProduct}
+        onClose={() => setDetectedProduct(null)}
+      />
+    )}
       {/* Debug SIEMPRE visible (abajo-izq)
       <View style={styles.debugBubble}>
         <Text style={styles.debugText}>

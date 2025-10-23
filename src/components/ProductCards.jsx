@@ -1,276 +1,67 @@
-// import React, { useEffect, useRef } from "react";
-// import {
-//   View,
-//   Text,
-//   Pressable,
-//   Animated,
-//   useColorScheme,
-//   StyleSheet,
-//   ScrollView,
-// } from "react-native";
-
-// /**
-//  * Muestra 1–3 tarjetas educativas para el producto reconocido.
-//  * Espera product.cards = { positivo?: string, recomendacion?: string, alerta?: string }
-//  */
-// export default function ProductCards({ product, onClose }) {
-//   const theme = useColorScheme();
-//   const appear = useRef(new Animated.Value(0)).current;
-
-//   // animación de entrada
-//   useEffect(() => {
-//     Animated.spring(appear, {
-//       toValue: 1,
-//       useNativeDriver: true,
-//       damping: 12,
-//       stiffness: 180,
-//       mass: 0.9,
-//     }).start();
-//   }, [appear]);
-
-//   if (!product) return null;
-
-//   const cards = normalizeCards(product?.cards);
-
-//   if (cards.length === 0) return null;
-
-//   const isDark = theme === "dark";
-
-//   return (
-//     <Animated.View
-//       accessibilityRole="summary"
-//       style={[
-//         styles.container,
-//         {
-//           transform: [
-//             {
-//               translateY: appear.interpolate({
-//                 inputRange: [0, 1],
-//                 outputRange: [40, 0],
-//               }),
-//             },
-//           ],
-//           opacity: appear,
-//         },
-//       ]}
-//     >
-//       {/* Encabezado compacto */}
-//       <View style={styles.headerRow}>
-//         <Text
-//           style={[
-//             styles.title,
-//             { color: isDark ? "#F6F7F9" : "#1A1D21" },
-//           ]}
-//           numberOfLines={1}
-//         >
-//           {product?.nombre || product?.name || "Producto"}
-//         </Text>
-
-//         {onClose && (
-//           <Pressable
-//             onPress={onClose}
-//             accessibilityRole="button"
-//             accessibilityLabel="Cerrar tarjetas"
-//             hitSlop={12}
-//           >
-//             <Text style={[styles.close, { color: isDark ? "#C6CBD3" : "#64748B" }]}>
-//               ✕
-//             </Text>
-//           </Pressable>
-//         )}
-//       </View>
-
-//       {/* Cards horizontales (scroll si son 3) */}
-//       <ScrollView
-//         horizontal
-//         showsHorizontalScrollIndicator={false}
-//         contentContainerStyle={{ paddingRight: 8 }}
-//       >
-//         {cards.map((c, i) => (
-//           <View
-//             key={i}
-//             style={[
-//               styles.card,
-//               c.kind === "positivo" && styles.cardPositive,
-//               c.kind === "recomendacion" && styles.cardNeutral,
-//               c.kind === "alerta" && styles.cardWarning,
-//               {
-//                 backgroundColor:
-//                   c.kind === "positivo"
-//                     ? (isDark ? "#0E2C1D" : "#E9F8F0")
-//                     : c.kind === "recomendacion"
-//                     ? (isDark ? "#0F1E2E" : "#E9F2FB")
-//                     : (isDark ? "#2E150F" : "#FDEDE8"),
-//                 borderColor:
-//                   c.kind === "positivo"
-//                     ? (isDark ? "#1BB378" : "#B6E9D1")
-//                     : c.kind === "recomendacion"
-//                     ? (isDark ? "#66A4F4" : "#B9D7FD")
-//                     : (isDark ? "#F08A5B" : "#F9C7BA"),
-//               },
-//             ]}
-//           >
-//             <Text
-//               style={[
-//                 styles.cardLabel,
-//                 {
-//                   color:
-//                     c.kind === "alerta"
-//                       ? (isDark ? "#FFB59A" : "#C2410C")
-//                       : c.kind === "positivo"
-//                       ? (isDark ? "#6FE2B2" : "#116149")
-//                       : (isDark ? "#9DC1FB" : "#1D4ED8"),
-//                 },
-//               ]}
-//               accessibilityRole="header"
-//             >
-//               {c.icon} {c.title}
-//             </Text>
-//             <Text
-//               style={[
-//                 styles.cardText,
-//                 { color: isDark ? "#E5E9F0" : "#0F172A" },
-//               ]}
-//             >
-//               {c.text}
-//             </Text>
-//           </View>
-//         ))}
-//       </ScrollView>
-//     </Animated.View>
-//   );
-// }
-
-// /** Normaliza y ordena cards:
-//  *  1) positivo   2) recomendacion   3) alerta
-//  *  Si falta alguna y hay datos mínimos, intenta autocompletar.
-//  */
-// function normalizeCards(raw) {
-//   const list = [];
-//   if (!raw || typeof raw !== "object") return list;
-
-//   if (raw.positivo) {
-//     list.push({ kind: "positivo", title: "Punto positivo", icon: "✨", text: String(raw.positivo).trim() });
-//   }
-//   if (raw.recomendacion) {
-//     list.push({ kind: "recomendacion", title: "Recomendación", icon: "💡", text: String(raw.recomendacion).trim() });
-//   }
-//   if (raw.alerta) {
-//     list.push({ kind: "alerta", title: "A tener en cuenta", icon: "⚠️", text: String(raw.alerta).trim() });
-//   }
-//   return list;
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     position: "absolute",
-//     bottom: 20,
-//     left: 12,
-//     right: 12,
-//     paddingVertical: 8,
-//     paddingHorizontal: 8,
-//     borderRadius: 16,
-//     backgroundColor: "rgba(8,10,12,0.12)", // base translúcida sobre cámara
-//     backdropFilter: "blur(4px)", // no en todos los RN; OK si se ignora
-//   },
-//   headerRow: {
-//     flexDirection: "row",
-//     alignItems: "center",
-//     marginBottom: 6,
-//     paddingHorizontal: 4,
-//   },
-//   title: {
-//     flex: 1,
-//     fontSize: 16,
-//     fontWeight: "700",
-//   },
-//   close: {
-//     fontSize: 18,
-//     paddingHorizontal: 6,
-//   },
-//   card: {
-//     width: 260,
-//     marginRight: 10,
-//     borderRadius: 14,
-//     padding: 12,
-//     borderWidth: 1,
-//     shadowColor: "#000",
-//     shadowOpacity: 0.12,
-//     shadowRadius: 10,
-//     shadowOffset: { width: 0, height: 4 },
-//     elevation: 3,
-//   },
-//   cardPositive: {},
-//   cardNeutral: {},
-//   cardWarning: {},
-//   cardLabel: {
-//     fontSize: 13,
-//     fontWeight: "800",
-//     letterSpacing: 0.2,
-//     marginBottom: 6,
-//     textTransform: "uppercase",
-//   },
-//   cardText: {
-//     fontSize: 14.5,
-//     lineHeight: 20,
-//   },
-// });
-
 // src/components/ProductCards.jsx
 import React, { useMemo } from "react";
 import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   useColorScheme,
+  FlatList,
+  Pressable,
+  Animated,
+  Platform,
+  Dimensions,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { BlurView } from "expo-blur";
 import { explainSeals } from "../../src/utils/seals";
 
-/* -------------------------------------------
-   Normaliza las cards que vienen del JSON
--------------------------------------------- */
+/* ---------- helpers ---------- */
+const KIND_COLORS = {
+  positivo:  "#FFFFFF",
+  recomendacion: "#FFFFFF",
+  alerta: "#FAFAFA",
+  sello:  "#FFFFFF",
+};
+const W = Dimensions.get("window").width;
+
+function oneLiner(text, max = 400) {
+  const t = (text || "").replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max);
+  const safe = cut.slice(0, cut.lastIndexOf(" "));
+  return (safe || cut).trim() + "…";
+}
+
 function normalizeCards(raw) {
   const list = [];
-  if (!raw || typeof raw !== "object") return list;
-
-  const pushIf = (cond, card) => {
-    if (cond && card.text && String(card.text).trim().length > 0) {
-      list.push({ ...card, text: String(card.text).trim() });
-    }
+  if (!raw) return list;
+  const pushIf = (val, card) => {
+    if (val && String(val).trim().length > 0)
+      list.push({ ...card, text: String(val).trim() });
   };
-
   pushIf(raw.positivo, {
     kind: "positivo",
     title: "Punto positivo",
     icon: "✨",
-    text: raw.positivo,
   });
-
   pushIf(raw.recomendacion, {
     kind: "recomendacion",
     title: "Recomendación",
     icon: "📌",
-    text: raw.recomendacion,
   });
-
   pushIf(raw.alerta, {
     kind: "alerta",
     title: "A tener en cuenta",
     icon: "⚠️",
-    text: raw.alerta,
   });
-
   return list;
 }
-
-/* -------------------------------------------
-   Evita duplicados
--------------------------------------------- */
 function dedupeCards(arr) {
   const seen = new Set();
-  return arr.filter((c) => {
-    const sig = `${c.kind}::${(c.title || "").toLowerCase().trim()}::${(c.text || "")
+  return (arr || []).filter((c) => {
+    const sig = `${c.kind}::${(c.title || "").toLowerCase().trim()}::${(
+      c.text || ""
+    )
       .toLowerCase()
       .trim()}`;
     if (seen.has(sig)) return false;
@@ -279,58 +70,78 @@ function dedupeCards(arr) {
   });
 }
 
-/* -------------------------------------------
-   Tokens de color por tipo
--------------------------------------------- */
-const KIND_COLORS = {
-  positivo: "#4CAF50",
-  recomendacion: "#3F8AE0",
-  alerta: "#FFB300",
-  sello: "#B0BEC5",
-};
+function useTilt(enable = false) {
+  const ax = React.useRef(new Animated.Value(0)).current;
+  const ay = React.useRef(new Animated.Value(0)).current;
+  // cuando lo actives, metemos el import dinámico acá
+  return { ax, ay, enable };
+}
 
-/* -------------------------------------------
-   Card minimalista (glass-like)
--------------------------------------------- */
-function MinimalCard({ icon, title, text, kind, isDark }) {
-  const tint = KIND_COLORS[kind] || "#9AA0A6";
+/* ---------- liquid card ---------- */
+function LiquidCard({ item, isDark, onPress, enableTilt = false, style }) {
+  const { ax, ay } = useTilt(enableTilt);
+  const rotateY = ax.interpolate({ inputRange: [-1, 1], outputRange: ["0deg", "0deg"] });
+  const rotateX = ay.interpolate({ inputRange: [-1, 1], outputRange: ["0deg", "0deg"] });
 
   return (
-    <View
+    <Animated.View
       style={[
-        styles.card,
-        isDark ? styles.cardDark : styles.cardLight,
-        { borderColor: isDark ? "rgba(255,255,255,0.22)" : "rgba(0,0,0,0.06)" },
+        styles.cardWrapper,
+        style,
+        { transform: [{ perspective: 600 }, { rotateX }, { rotateY }] },
       ]}
     >
-      <View style={styles.header}>
-        <View style={[styles.iconBadge, { backgroundColor: withAlpha(tint, 0.16) }]}>
-          <Text style={[styles.iconEmoji, { color: tint }]}>{icon}</Text>
+      {/* 1) Blur cubriendo TODA la card */}
+      <BlurView
+        intensity={95}
+        tint={isDark ? "dark" : "light"}
+        style={styles.blurLayer}
+        experimentalBlurMethod="dimezisBlurView"
+      />
+
+      {/* 2) Tinte lechoso encima del blur (para “liquid glass”) */}
+      <View style={styles.glassTint} />
+
+      {/* 3) Highlight superior */}
+      <View style={styles.topHighlight} />
+
+      {/* 4) Contenido */}
+      <Pressable onPress={onPress} style={({ pressed }) => [{ flex: 1, opacity: pressed ? 0.9 : 1 }]}>
+        <View style={styles.content}>
+          <Text style={[styles.titleRow, { color: "#FFFFFF" }]}>
+            <Text style={[styles.titleColor, { color: item.color }]}>
+              {item.icon} {item.title}
+            </Text>
+          </Text>
+          <Text style={styles.bodyText}>{item.text}</Text>
         </View>
-        <Text style={[styles.title, { color: tint }]}>{title}</Text>
-      </View>
-
-      <View style={styles.divider} />
-
-      <Text style={[styles.body, isDark ? styles.bodyDark : styles.bodyLight]}>
-        {text}
-      </Text>
-    </View>
+      </Pressable>
+    </Animated.View>
   );
 }
 
-/* -------------------------------------------
-   Componente principal
--------------------------------------------- */
-export default function ProductCards({ product, onClose }) {
+/* ---------- componente principal ---------- */
+export default function ProductCards({ product, cards: cardsProp, onClose }) {
   const scheme = useColorScheme();
   const isDark = scheme !== "light";
-
+  const insets = useSafeAreaInsets();
   const cards = useMemo(() => {
-    const base = normalizeCards(product?.cards);
+    // Soporta data prearmada (cardsProp) o product.cards
+    let base = [];
+    if (Array.isArray(cardsProp)) {
+      base = cardsProp.filter(Boolean).map((c) => ({
+        kind: c.kind,
+        title: c.title || (c.kind === "alerta" ? "A tener en cuenta" : c.kind),
+        icon: c.icon || "•",
+        text: c.text || "",
+      }));
+    } else {
+      base = normalizeCards(product?.cards);
+    }
 
+    // Auto sello
     const extra = [];
-    const selloText = explainSeals(product);
+    const selloText = explainSeals?.(product);
     if (selloText && selloText.trim().length > 0) {
       extra.push({
         kind: "sello",
@@ -340,107 +151,202 @@ export default function ProductCards({ product, onClose }) {
       });
     }
 
-    return dedupeCards([...base, ...extra]);
-  }, [product]);
+    const all = dedupeCards([...base, ...extra]).map((c) => ({
+      ...c,
+      color: KIND_COLORS[c.kind] || "#FFFFFF",
+      summary: c.text,
+    }));
 
-  if (!cards.length) return null;
+    return all;
+  }, [product, cardsProp]);
+
+  if (!cards.length) {
+    // Debug: mostramos una pista para validar el flujo
+    return (
+      <View
+        style={[styles.stripRoot, { justifyContent: "flex-end" }]}
+        pointerEvents="box-none"
+      >
+        <View
+          style={[
+            styles.stripOverlay,
+            {
+              backgroundColor: isDark
+                ? "rgba(10,10,12,0.45)"
+                : "rgba(12,12,14,0.35)",
+            },
+          ]}
+        />
+        <View style={{ paddingHorizontal: 16, paddingBottom: 12 }}>
+          <Text style={{ color: "#fff", opacity: 0.7, textAlign: "center" }}>
+            (No hay cards para este producto)
+          </Text>
+        </View>
+      </View>
+    );
+  }
 
   return (
-    <View style={styles.container} pointerEvents="box-none">
-      {cards.map((c, idx) => (
-        <MinimalCard key={`${c.kind}-${idx}`} {...c} isDark={isDark} />
-      ))}
-
-      <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
-        <Text style={styles.closeTxt}>Cerrar</Text>
-      </TouchableOpacity>
+    <View
+    pointerEvents="box-none"
+    style={[
+      styles.stripRoot,
+      { bottom: (insets?.bottom ?? 0) + 8 } 
+    ]}
+  >
+      <View
+        style={[
+          styles.stripOverlay,
+          {
+            backgroundColor: isDark
+              ? "rgba(10,10,12,0.45)"
+              : "rgba(12,12,14,0.35)",
+          },
+        ]}
+      />
+      <FlatList
+        data={cards}
+        horizontal
+        keyExtractor={(it, i) => `${it.kind}-${i}`}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={[
+          styles.list,
+          { paddingLeft: SPACING, paddingRight: SPACING + PEEK },
+        ]}
+        decelerationRate="fast"
+        snapToAlignment="start"
+        snapToInterval={CARD_W + GUTTER}
+        getItemLayout={(data, index) => ({
+          length: CARD_W + GUTTER,
+          offset: (CARD_W + GUTTER) * index,
+          index,
+        })}
+        renderItem={({ item, index }) => (
+          <LiquidCard
+            item={item}
+            isDark={isDark}
+            enableTilt={false}
+            style={{ width: CARD_W, marginRight: GUTTER }}
+            onPress={() => {}}
+          />
+        )}
+      />
+      <View
+        style={{
+          position: "absolute",
+          left: 0,
+          bottom: 0,
+          height: CARD_H,
+          width: 24,
+          backgroundColor: "rgba(0,0,0,0.0001)",
+        }}
+        pointerEvents="none"
+      />
+      <View
+        style={{
+          position: "absolute",
+          right: 0,
+          bottom: 0,
+          height: CARD_H,
+          width: PEEK,
+          backgroundColor: "rgba(0,0,0,0.0001)",
+        }}
+        pointerEvents="none"
+      />
+      {/* {onClose ? (
+        <Pressable onPress={onClose} style={styles.closeBtn}>
+          <Text style={styles.closeTxt}>Cerrar</Text>
+        </Pressable>
+      ) : null} */}
     </View>
   );
 }
 
-/* -------------------------------------------
-   Utils
--------------------------------------------- */
-function withAlpha(hex, alpha = 0.2) {
-  // hex "#RRGGBB"
-  const a = Math.round(Math.min(Math.max(alpha, 0), 1) * 255)
-    .toString(16)
-    .padStart(2, "0");
-  return `${hex}${a}`;
-}
-
-/* -------------------------------------------
-   Estilos (look & feel minimalista)
--------------------------------------------- */
+/* ---------- estilos ---------- */
+const SPACING = 16;
+const PEEK = 28;
+const GUTTER = 12;
+const CARD_H = 130;
+const CARD_W = Math.round(W - (SPACING * 2 + PEEK));
 const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    left: 16,
-    right: 16,
-    bottom: 24,
-  },
+  stripRoot: {
+    
+    position: "absolute",     // 👈 vuelve a ser flotante
+ left: 0,                  // 👈 ocupa ancho completo
+    right: 0,
+  // bottom lo seteamos dinámicamente con insets en el JSX
+  minHeight: CARD_H + 24,
+    maxHeight: Math.round(Dimensions.get("window").height * 0.2),
+   justifyContent: "flex-end",
+  zIndex: 1000,
+ pointerEvents: "box-none",
+      },
+      stripOverlay: {
+      // ...StyleSheet.absoluteFillObject,
+      // opcional: si querés scrim, activá absoluteFill
+      // ...StyleSheet.absoluteFillObject,
+      },
 
-  // Card base
-  card: {
-    borderRadius: 24,
-    padding: 16,
-    marginBottom: 12,
+  cardWrapper: {
+    width: CARD_W,
+    minHeight: CARD_H,
+    paddingVertical: 14,
+    borderRadius: 22,
+    overflow: "hidden",                        // recorta todo a la curva
     borderWidth: 1,
-    // Sombras suaves (iOS) + elevación (Android)
+    borderColor: "rgba(255, 255, 255, 0.37)",
     shadowColor: "#000",
-    shadowOpacity: 0.15,
-    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.25,
     shadowRadius: 24,
-    elevation: 6,
-  },
-  // Fondo translúcido cálido (light) y frío (dark)
-  cardLight: {
-    backgroundColor: "rgba(255,255,255,0.65)",
-  },
-  cardDark: {
-    backgroundColor: "rgba(22,22,24,0.75)",
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 10,
+    backgroundColor: "transparent",            // ⭐ nada de fondo acá
   },
 
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 8,
-  },
-  iconBadge: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: 10,
-  },
-  iconEmoji: { fontSize: 16 },
-  title: {
-    fontSize: 16,
-    fontWeight: "700",
-    letterSpacing: 0.2,
+  // El blur debe cubrir el 100% del contenedor
+  blurLayer: {
+    position: "absolute",
+    top: 0, left: 0, right: 0, bottom: 0,
+    borderRadius: 22,                           // iOS a veces lo necesita igual
   },
 
-  divider: {
-    height: 1,
-    backgroundColor: "rgba(255,255,255,0.14)",
-    marginVertical: 10,
+  // Tinte lechoso (antes lo tenías en blurLayer)
+  glassTint: {
+    position: "absolute",
+    top: 0, left: 0, right: 0, bottom: 0,
+    borderRadius: 22,
+    backgroundColor: "rgba(255,255,255,0.14)", // ajustá 0.14–0.22 a gusto
   },
 
-  body: {
-    fontSize: 14,
-    lineHeight: 20,
+  topHighlight: {
+    position: "absolute",
+    top: 0, left: 0, right: 0,
+    height: 2,
+    backgroundColor: "rgba(255,255,255,0.35)",
   },
-  bodyLight: { color: "#111" },
-  bodyDark: { color: "#ECECEC" },
 
-  closeBtn: {
-    alignSelf: "center",
-    backgroundColor: "rgba(0,0,0,0.08)",
-    paddingVertical: 10,
+  content: {
+    flex: 1,
     paddingHorizontal: 18,
-    borderRadius: 20,
-    marginTop: 4,
+    justifyContent: "center",
   },
-  closeTxt: { color: "#111", fontWeight: "600" },
+
+  titleRow: {
+    fontSize: 18,
+    fontWeight: "800",
+    marginBottom: 6,
+    textShadowColor: "rgba(0,0,0,0.25)",
+    textShadowRadius: 2,
+  },
+  titleColor: { fontWeight: "900" },
+  bodyText: {
+    fontSize: 16,
+    lineHeight: 22,
+    color: "#FFFFFF",
+    textShadowColor: "rgba(0,0,0,0.35)",
+    textShadowRadius: 2,
+    flexShrink: 1,
+    flexWrap: "wrap",
+    width: "100%",
+  },
 });

@@ -17,10 +17,10 @@ import { explainSeals } from "../../src/utils/seals";
 
 /* ---------- helpers ---------- */
 const KIND_COLORS = {
-  positivo:  "#FFFFFF",
+  positivo: "#FFFFFF",
   recomendacion: "#FFFFFF",
   alerta: "#FAFAFA",
-  sello:  "#FFFFFF",
+  sello: "#FFFFFF",
 };
 const W = Dimensions.get("window").width;
 
@@ -80,8 +80,14 @@ function useTilt(enable = false) {
 /* ---------- liquid card ---------- */
 function LiquidCard({ item, isDark, onPress, enableTilt = false, style }) {
   const { ax, ay } = useTilt(enableTilt);
-  const rotateY = ax.interpolate({ inputRange: [-1, 1], outputRange: ["0deg", "0deg"] });
-  const rotateX = ay.interpolate({ inputRange: [-1, 1], outputRange: ["0deg", "0deg"] });
+  const rotateY = ax.interpolate({
+    inputRange: [-1, 1],
+    outputRange: ["0deg", "0deg"],
+  });
+  const rotateX = ay.interpolate({
+    inputRange: [-1, 1],
+    outputRange: ["0deg", "0deg"],
+  });
 
   return (
     <Animated.View
@@ -106,7 +112,10 @@ function LiquidCard({ item, isDark, onPress, enableTilt = false, style }) {
       <View style={styles.topHighlight} />
 
       {/* 4) Contenido */}
-      <Pressable onPress={onPress} style={({ pressed }) => [{ flex: 1, opacity: pressed ? 0.9 : 1 }]}>
+      <Pressable
+        onPress={onPress}
+        style={({ pressed }) => [{ flex: 1, opacity: pressed ? 0.9 : 1 }]}
+      >
         <View style={styles.content}>
           <Text style={[styles.titleRow, { color: "#FFFFFF" }]}>
             <Text style={[styles.titleColor, { color: item.color }]}>
@@ -188,12 +197,9 @@ export default function ProductCards({ product, cards: cardsProp, onClose }) {
 
   return (
     <View
-    pointerEvents="box-none"
-    style={[
-      styles.stripRoot,
-      { bottom: (insets?.bottom ?? 0) + 8 } 
-    ]}
-  >
+      pointerEvents="box-none"
+      style={[styles.stripRoot, { bottom: (insets?.bottom ?? 0) + 8 }]}
+    >
       <View
         style={[
           styles.stripOverlay,
@@ -204,6 +210,19 @@ export default function ProductCards({ product, cards: cardsProp, onClose }) {
           },
         ]}
       />
+     {(product?.nombre || product?.name) ? (
+  <View
+    pointerEvents="none"
+    style={[
+      styles.productNameWrap,
+      { bottom: (insets?.bottom ?? 0) + CARD_H + 365 } // queda encima de las cards y del scanner
+    ]}
+  >
+    <Text numberOfLines={1} style={styles.productNameText}>
+      {product.nombre || product.name}
+    </Text>
+  </View>
+) : null}
       <FlatList
         data={cards}
         horizontal
@@ -270,29 +289,28 @@ const CARD_H = 130;
 const CARD_W = Math.round(W - (SPACING * 2 + PEEK));
 const styles = StyleSheet.create({
   stripRoot: {
-    
-    position: "absolute",     // 👈 vuelve a ser flotante
- left: 0,                  // 👈 ocupa ancho completo
+    position: "absolute", // 👈 vuelve a ser flotante
+    left: 0, // 👈 ocupa ancho completo
     right: 0,
-  // bottom lo seteamos dinámicamente con insets en el JSX
-  minHeight: CARD_H + 24,
+    // bottom lo seteamos dinámicamente con insets en el JSX
+    minHeight: CARD_H + 24,
     maxHeight: Math.round(Dimensions.get("window").height * 0.2),
-   justifyContent: "flex-end",
-  zIndex: 1000,
- pointerEvents: "box-none",
-      },
-      stripOverlay: {
-      // ...StyleSheet.absoluteFillObject,
-      // opcional: si querés scrim, activá absoluteFill
-      // ...StyleSheet.absoluteFillObject,
-      },
+    justifyContent: "flex-end",
+    zIndex: 1000,
+    pointerEvents: "box-none",
+  },
+  stripOverlay: {
+    // ...StyleSheet.absoluteFillObject,
+    // opcional: si querés scrim, activá absoluteFill
+    // ...StyleSheet.absoluteFillObject,
+  },
 
   cardWrapper: {
     width: CARD_W,
     minHeight: CARD_H,
     paddingVertical: 14,
     borderRadius: 22,
-    overflow: "hidden",                        // recorta todo a la curva
+    overflow: "hidden", // recorta todo a la curva
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.37)",
     shadowColor: "#000",
@@ -300,27 +318,35 @@ const styles = StyleSheet.create({
     shadowRadius: 24,
     shadowOffset: { width: 0, height: 10 },
     elevation: 10,
-    backgroundColor: "transparent",            // ⭐ nada de fondo acá
+    backgroundColor: "transparent", // ⭐ nada de fondo acá
   },
 
   // El blur debe cubrir el 100% del contenedor
   blurLayer: {
     position: "absolute",
-    top: 0, left: 0, right: 0, bottom: 0,
-    borderRadius: 22,                           // iOS a veces lo necesita igual
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 22, // iOS a veces lo necesita igual
   },
 
   // Tinte lechoso (antes lo tenías en blurLayer)
   glassTint: {
     position: "absolute",
-    top: 0, left: 0, right: 0, bottom: 0,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     borderRadius: 22,
     backgroundColor: "rgba(255,255,255,0.14)", // ajustá 0.14–0.22 a gusto
   },
 
   topHighlight: {
     position: "absolute",
-    top: 0, left: 0, right: 0,
+    top: 0,
+    left: 0,
+    right: 0,
     height: 2,
     backgroundColor: "rgba(255,255,255,0.35)",
   },
@@ -348,5 +374,28 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     flexWrap: "wrap",
     width: "100%",
+  },
+  productNameWrap: {
+    position: "absolute",
+    left: 16,
+    right: 16,
+    alignItems: "center",
+    zIndex: 1200,
+  },
+  
+  productNameText: {
+    color: "#FFFFFF",
+    fontSize: 22,
+    fontWeight: "800",
+    letterSpacing: 0.2,
+    textShadowColor: "rgba(0, 0, 0, 0.1)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 6,
+    // fondo súper sutil para legibilidad (no es “card”)
+    backgroundColor: "rgba(0,0,0,0.20)",
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 12,
+    overflow: "hidden",
   },
 });

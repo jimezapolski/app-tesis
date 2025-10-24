@@ -123,7 +123,6 @@ export default function ScanScreen() {
   const onCameraReady = useCallback(() => {
     cameraReadyRef.current = true;
     setDbg((d) => ({ ...d, phase: "READY", err: "" }));
-    // si los permisos ya estaban OK, (re)arrancá el loop
     if (permission?.granted && !timerRef.current) {
       timerRef.current = setInterval(tick, SCAN_INTERVAL_MS);
     }
@@ -153,7 +152,7 @@ export default function ScanScreen() {
         ref={camRef}
         style={StyleSheet.absoluteFill}
         facing="back"
-        mode="picture"              // IMPORTANTE para takePictureAsync
+        mode="picture"              
         onCameraReady={onCameraReady}
         videoStabilizationMode="auto"
         zoom={0}

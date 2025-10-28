@@ -359,6 +359,7 @@ const styles = StyleSheet.create({
 
   titleRow: {
     fontSize: 18,
+    fontFamily: 'Figtree_800Bold',
     fontWeight: "800",
     marginBottom: 6,
     textShadowColor: "rgba(0,0,0,0.25)",
@@ -367,6 +368,7 @@ const styles = StyleSheet.create({
   titleColor: { fontWeight: "900" },
   bodyText: {
     fontSize: 16,
+    fontFamily: 'Figtree_400Regular',
     lineHeight: 22,
     color: "#FFFFFF",
     textShadowColor: "rgba(0,0,0,0.35)",
@@ -385,6 +387,7 @@ const styles = StyleSheet.create({
   
   productNameText: {
     color: "#FFFFFF",
+    fontFamily: 'Figtree_800Bold',
     fontSize: 22,
     fontWeight: "800",
     letterSpacing: 0.2,

@@ -37,13 +37,14 @@
     "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
-    "react-native-svg": "^15.11.2",
+    "react-native-svg": "15.11.2",
     "react-native-web": "^0.20.0",
     "react-viro": "^2.17.0",
     "styled-components": "5.3.11",
     "twrnc": "^4.6.1",
     "expo-blur": "~14.1.5",
-    "expo-sensors": "~14.1.4"
+    "expo-sensors": "~14.1.4",
+    "expo-linear-gradient": "~14.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

@@ -1,10 +1,14 @@
 import React from "react";
 import { View, Text, Pressable } from "react-native";
 import { ui, COLORS, FONTS } from "../../constants/theme";
+import NotifyTestButton from "./NotifyTestButton";
 
 export default function HomeScreen({ navigation }) {
   return (
+    
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 20 }}>
+ <NotifyTestButton />
+
       <Text style={{ fontSize: FONTS.tituloVerde.fontSize, marginBottom: 16, color: FONTS.tituloVerde.color, fontFamily: FONTS.tituloVerde.fontFamily, fontWeight: "700" }}>
       Hola! 👋🏼 
       </Text>

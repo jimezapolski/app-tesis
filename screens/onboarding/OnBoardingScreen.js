@@ -91,13 +91,13 @@ export default function OnBoardingScreen() {
   const TITLE = { fontFamily: "Figtree-Bold", fontSize: 34, color: "#FFFFFF" };
   const BODY = {
     fontFamily: "Figtree-Regular",
-    fontSize: 16,
-    color: "rgba(255,255,255,0.85)",
+    fontSize: 20,
+    color: "rgba(255, 255, 255, 0.96)",
     lineHeight: 22,
   };
   const SKIP = {
     fontFamily: "Figtree-SemiBold",
-    fontSize: 14,
+    fontSize: 16,
     color: "rgba(235,235,245,0.90)",
   };
 

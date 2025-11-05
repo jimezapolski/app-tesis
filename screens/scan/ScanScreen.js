@@ -1,92 +1,249 @@
+// // screens/scan/ScanScreen.js
+// import React, { useCallback, useRef, useState } from "react";
+// import { ActivityIndicator, Alert, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+// import { CameraView, useCameraPermissions } from "expo-camera";
+// import * as Haptics from "expo-haptics";
+// import { recognize } from "../../src/native/TextRecognizer";
+
+// const FRAME_ASPECT = 1.2;
+
+// export default function ScanScreen() {
+//   const camRef = useRef(null);
+//   const [permission, requestPermission] = useCameraPermissions();
+//   const [spinning, setSpinning] = useState(false);
+
+//   // 🧪 Saca UNA foto, corre OCR y muestra resultado
+//   const testOCROnce = useCallback(async () => {
+//     try {
+//       if (!camRef.current) return;
+//       setSpinning(true);
+
+//       const shot = await camRef.current.takePictureAsync({
+//         base64: true,
+//         quality: Platform.OS === "ios" ? 0.8 : 0.8,
+//         skipProcessing: false, // deja orientación/nitidez del SO
+//         exif: false,
+//         // imageType: "jpg", // si tu SDK lo soporta, activalo
+//       });
+
+//       if (!shot?.base64) {
+//         Alert.alert("OCR test", "No salió base64 de la cámara");
+//         return;
+//       }
+
+//       let lines = [];
+//       try {
+//         lines = await recognize(shot.base64);
+//       } catch {
+//         lines = await recognize(`data:image/jpeg;base64,${shot.base64}`);
+//       }
+
+//       const tokens = Array.isArray(lines)
+//         ? lines.join(" ").split(/\s+/).filter(Boolean).length
+//         : 0;
+
+//       // feedback háptico si lee algo
+//       if (tokens > 0) {
+//         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {});
+//       }
+
+//       Alert.alert(
+//         "OCR test",
+//         `tokens: ${tokens}\n\nPrimeras líneas:\n${
+//           Array.isArray(lines) ? lines.slice(0, 5).join("\n") : String(lines)
+//         }`
+//       );
+//     } catch (e) {
+//       Alert.alert("OCR test — error", String(e?.message || e));
+//     } finally {
+//       setSpinning(false);
+//     }
+//   }, []);
+
+//   if (!permission) {
+//     requestPermission();
+//     return null;
+//   }
+
+//   return (
+//     <View style={styles.container}>
+//       <CameraView ref={camRef} style={StyleSheet.absoluteFill} facing="back" />
+
+//       {/* Marco visual */}
+//       <View pointerEvents="none" style={styles.frameWrapper}>
+//         <View style={styles.frame} />
+//       </View>
+
+//       {/* Botón de prueba OCR */}
+//       <Pressable onPress={testOCROnce} style={styles.ocrTestBtn}>
+//         <Text style={styles.ocrTestTxt}>Probar OCR</Text>
+//       </Pressable>
+
+//       {spinning && (
+//         <View style={styles.spinnerWrap}>
+//           <ActivityIndicator color="#fff" />
+//         </View>
+//       )}
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: { flex: 1, backgroundColor: "#000" },
+//   frameWrapper: { ...StyleSheet.absoluteFillObject, alignItems: "center", justifyContent: "center" },
+//   frame: {
+//     width: "78%",
+//     aspectRatio: FRAME_ASPECT,
+//     borderRadius: 16,
+//     borderWidth: 3,
+//     borderColor: "rgba(255,255,255,0.9)",
+//     backgroundColor: "transparent",
+//   },
+//   ocrTestBtn: {
+//     position: "absolute",
+//     bottom: 40,
+//     right: 20,
+//     backgroundColor: "#111827",
+//     paddingHorizontal: 14,
+//     paddingVertical: 10,
+//     borderRadius: 12,
+//   },
+//   ocrTestTxt: { color: "#fff", fontWeight: "700" },
+//   spinnerWrap: {
+//     position: "absolute",
+//     bottom: 100,
+//     alignSelf: "center",
+//     backgroundColor: "rgba(0,0,0,0.5)",
+//     padding: 12,
+//     borderRadius: 999,
+//   },
+// });
 
 // screens/scan/ScanScreen.js
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Platform, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Alert, AppState, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import * as Haptics from "expo-haptics";
+
 import ProductCards from "../../src/components/ProductCards";
-
-
 import { recognize, matchProductByText } from "../../src/native/TextRecognizer";
 import products from "../../assets/data/products.json";
 
-const SCAN_INTERVAL_MS = 1200;
-const MATCH_OPTS = { threshold: 0.10, minHits: 2 };
+const SCAN_INTERVAL_MS = 1200;  // tu timing original
 const FRAME_ASPECT = 1.2;
+const MATCH_OPTS = { threshold: 0.10, minHits: 2 };
 
 export default function ScanScreen() {
   const camRef = useRef(null);
-  const busyRef = useRef(false);
-  const timerRef = useRef(null);
-  const cameraReadyRef = useRef(false);
 
+  // loop robusto (sin setInterval)
+  const runningRef = useRef(false);
+  const tickingRef = useRef(false);
+  const appStateRef = useRef("active");
+
+  // permisos
   const [permission, requestPermission] = useCameraPermissions();
 
   // UI
   const [message, setMessage] = useState("Alineá la etiqueta dentro del marco");
-  const [detectedProduct, setDetectedProduct] = useState(null);
   const [spinning, setSpinning] = useState(false);
+  const [detectedProduct, setDetectedProduct] = useState(null);
 
-  // Debug SIEMPRE visible
+  // debug
   const [dbg, setDbg] = useState({
-    phase: "INIT", // INIT | READY | SNAP | OCR | MATCH | ERROR
+    phase: "INIT",
+    snaps: 0,
     tokens: 0,
     hits: "—",
     score: "0.000",
     err: "",
-    snaps: 0, // cuántas fotos se intentaron
   });
 
   // pedir permisos
   useEffect(() => {
     (async () => {
-      if (!permission || !permission.granted) {
-        await requestPermission();
-      }
+      if (!permission || !permission.granted) await requestPermission();
     })();
   }, []);
 
-  // arranque/parada del scan loop
+  // pausa/reanuda por estado de app (por si aparecen banners del SO)
   useEffect(() => {
-    if (!permission?.granted || !cameraReadyRef.current) return;
-
-    // arrancar loop sólo cuando cámara está lista
-    setDbg((d) => ({ ...d, phase: "READY", err: "" }));
-    timerRef.current = setInterval(tick, SCAN_INTERVAL_MS);
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-      timerRef.current = null;
-    };
+    const sub = AppState.addEventListener("change", (next) => {
+      appStateRef.current = next;
+      if (next !== "active") {
+        runningRef.current = false; // pausa
+        tickingRef.current = false;
+        setSpinning(false);
+      } else if (permission?.granted) {
+        startLoop(); // reanuda
+      }
+    });
+    return () => sub.remove();
   }, [permission?.granted]);
 
-  // se llama cada vez
-  const tick = useCallback(async () => {
-    if (!camRef.current || busyRef.current) return;
+  // cámara lista → arrancar loop
+  const onCameraReady = useCallback(() => {
+    setDbg((d) => ({ ...d, phase: "READY", err: "" }));
+    if (permission?.granted) startLoop();
+  }, [permission?.granted]);
 
+  // ===== loop =====
+  const startLoop = useCallback(() => {
+    if (runningRef.current) return;
+    runningRef.current = true;
+    runOnce();
+  }, []);
+
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  const runOnce = useCallback(async () => {
+    if (!runningRef.current) return;
+    if (tickingRef.current) return;
+    if (appStateRef.current !== "active") {
+      setTimeout(runOnce, SCAN_INTERVAL_MS);
+      return;
+    }
+    tickingRef.current = true;
     try {
-      busyRef.current = true;
+      await tick();
+    } finally {
+      tickingRef.current = false;
+      if (runningRef.current) setTimeout(runOnce, SCAN_INTERVAL_MS);
+    }
+  }, [tick]);
+
+  // una iteración de captura + OCR + match
+  const tick = useCallback(async () => {
+    if (!camRef.current) return;
+    try {
       setSpinning(true);
       setDbg((d) => ({ ...d, phase: "SNAP", snaps: d.snaps + 1, err: "" }));
 
+      // pequeña pausa para autofocus si venías moviendo
+      await sleep(80);
+
       const shot = await camRef.current.takePictureAsync({
         base64: true,
-        quality: Platform.OS === "ios" ? 0.45 : 0.5,
-        skipProcessing: true,
+        quality: Platform.OS === "ios" ? 0.8 : 0.8,
+        skipProcessing: false,   // deja orientación/nitidez del SO
         exif: false,
+        // imageType: "jpg", // si tu SDK lo soporta, activalo
       });
-
-      if (!shot?.base64) {
-        throw new Error("No base64 de la cámara");
-      }
+      if (!shot?.base64) throw new Error("No base64 de la cámara");
 
       setDbg((d) => ({ ...d, phase: "OCR" }));
-      const lines = await recognize(shot.base64);
+
+      let lines = [];
+      try {
+        lines = await recognize(shot.base64);
+      } catch {
+        // fallback por si el nativo espera data-uri
+        lines = await recognize(`data:image/jpeg;base64,${shot.base64}`);
+      }
 
       const tokens = Array.isArray(lines)
         ? lines.join(" ").split(/\s+/).filter(Boolean).length
         : 0;
-
       setDbg((d) => ({ ...d, tokens }));
 
       const { product, score, hits } = matchProductByText(lines, products, MATCH_OPTS);
@@ -102,6 +259,8 @@ export default function ScanScreen() {
         setDetectedProduct(product);
         setMessage(null);
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {});
+        // pausa mínima para no sobre-escanear mientras se muestra la card
+        await sleep(300);
       } else {
         setDetectedProduct(null);
         setMessage("Alineá la etiqueta dentro del marco");
@@ -109,34 +268,16 @@ export default function ScanScreen() {
     } catch (e) {
       setDetectedProduct(null);
       setMessage("Alineá la etiqueta dentro del marco");
-      setDbg((d) => ({
-        ...d,
-        phase: "ERROR",
-        err: e?.message || String(e),
-      }));
+      setDbg((d) => ({ ...d, phase: "ERROR", err: e?.message || String(e) }));
     } finally {
       setSpinning(false);
-      busyRef.current = false;
     }
   }, []);
 
-  const onCameraReady = useCallback(() => {
-    cameraReadyRef.current = true;
-    setDbg((d) => ({ ...d, phase: "READY", err: "" }));
-    if (permission?.granted && !timerRef.current) {
-      timerRef.current = setInterval(tick, SCAN_INTERVAL_MS);
-    }
-  }, [permission?.granted, tick]);
+  // cleanup
+  useEffect(() => () => { runningRef.current = false; }, []);
 
-  if (!permission) {
-    return (
-      <View style={styles.center}>
-        <ActivityIndicator />
-        <Text style={styles.note}>Solicitando cámara…</Text>
-      </View>
-    );
-  }
-
+  if (!permission) return null;
   if (!permission.granted) {
     return (
       <View style={styles.center}>
@@ -152,10 +293,12 @@ export default function ScanScreen() {
         ref={camRef}
         style={StyleSheet.absoluteFill}
         facing="back"
-        mode="picture"              
+        mode="picture"
         onCameraReady={onCameraReady}
         videoStabilizationMode="auto"
         zoom={0}
+        autofocus="on"
+        photoQualityBalance="quality"
       />
 
       {!!message && (
@@ -164,37 +307,42 @@ export default function ScanScreen() {
         </View>
       )}
 
+      {/* Marco */}
       <View pointerEvents="none" style={styles.frameWrapper}>
         <View style={styles.frame} />
       </View>
 
-      {/* {detectedProduct && (
-        <View style={styles.productCard}>
-          <Text style={styles.productTitle}>
-            {(detectedProduct.marca || detectedProduct.brand || "").trim()} —{" "}
-            {(detectedProduct.nombre || detectedProduct.name || "").trim()}
-          </Text>
-          {Array.isArray(detectedProduct.sellos || detectedProduct.seals) &&
-            (detectedProduct.sellos || detectedProduct.seals).length > 0 && (
-              <Text style={styles.productSeals}>
-                Sellos: {(detectedProduct.sellos || detectedProduct.seals).join(" · ")}
-              </Text>
-            )}
-          {detectedProduct.nutrienteClave?.tipo && detectedProduct.nutrienteClave?.valor && (
-            <Text style={styles.productMeta}>
-              {detectedProduct.nutrienteClave.tipo}: {detectedProduct.nutrienteClave.valor}
+      {/* Cards sobre el escaneo
+      {detectedProduct && (
+        <>
+          <View style={styles.productCard}>
+            <Text style={styles.productTitle}>
+              {(detectedProduct.marca || detectedProduct.brand || "").trim()} —{" "}
+              {(detectedProduct.nombre || detectedProduct.name || "").trim()}
             </Text>
-          )}
-        </View>
+            {Array.isArray(detectedProduct.sellos || detectedProduct.seals) &&
+              (detectedProduct.sellos || detectedProduct.seals).length > 0 && (
+                <Text style={styles.productSeals}>
+                  Sellos: {(detectedProduct.sellos || detectedProduct.seals).join(" · ")}
+                </Text>
+              )}
+          </View>
+
+          <ProductCards
+            product={detectedProduct}
+            onClose={() => setDetectedProduct(null)}
+          />
+        </>
       )} */}
-      {/* Overlay de cards cuando hay match */}
-    {detectedProduct && (
-      <ProductCards
-        product={detectedProduct}
-        onClose={() => setDetectedProduct(null)}
-      />
-    )}
-      {/* Debug SIEMPRE visible (abajo-izq)
+
+{detectedProduct && (
+  <ProductCards
+    product={detectedProduct}
+    onClose={() => setDetectedProduct(null)}
+  />
+)}
+
+      {/* Debug
       <View style={styles.debugBubble}>
         <Text style={styles.debugText}>
           OCR / MATCH{"\n"}
@@ -233,11 +381,7 @@ const styles = StyleSheet.create({
   },
   topBannerText: { color: "#fff", fontSize: 16, fontWeight: "600" },
 
-  frameWrapper: {
-    ...StyleSheet.absoluteFillObject,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  frameWrapper: { ...StyleSheet.absoluteFillObject, alignItems: "center", justifyContent: "center" },
   frame: {
     width: "78%",
     aspectRatio: FRAME_ASPECT,
@@ -249,23 +393,19 @@ const styles = StyleSheet.create({
 
   productCard: {
     position: "absolute",
-    left: 16,
-    right: 16,
+    left: 16, right: 16,
     bottom: 28 + (Platform.OS === "ios" ? 6 : 0),
     padding: 14,
     borderRadius: 14,
     backgroundColor: "rgba(0,0,0,0.55)",
   },
   productTitle: { color: "#fff", fontWeight: "700", fontSize: 16, marginBottom: 6 },
-  productSeals: { color: "#f8d477", fontSize: 14, marginBottom: 2 },
-  productMeta: { color: "#cfe8ff", fontSize: 13 },
+  productSeals: { color: "#f8d477", fontSize: 14 },
 
   debugBubble: {
     position: "absolute",
-    left: 16,
-    bottom: 24,
-    padding: 10,
-    borderRadius: 12,
+    left: 16, bottom: 24,
+    padding: 10, borderRadius: 12,
     backgroundColor: "rgba(0,0,0,0.55)",
     maxWidth: "78%",
   },

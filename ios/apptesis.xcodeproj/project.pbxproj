@@ -8,30 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		2A3A9F9E522853B11F670B64 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443E404322D99AB987D588B /* ExpoModulesProvider.swift */; };
+		34CF0A4D301150F2C9DA2102 /* libPods-apptesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 119081A216006AA420B5EDE9 /* libPods-apptesis.a */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		7D35FD6B2E84982E0044459E /* TextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35FD6A2E8498210044459E /* TextRecognizer.swift */; };
-		7DCD95272E8DAD2D0088FA5A /* TextRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD95262E8DAD160088FA5A /* TextRecognizer.m */; };
+		7D7615E32EBBE9F5005151CE /* TextRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA10782EBBDA1F0086553A /* TextRecognizer.m */; };
+		A298D6C527407D94F1F2AD6A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 470D07869C3C34B5265AF20F /* PrivacyInfo.xcprivacy */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		BDE0F5D29E08E30C34436570 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E81DCD3D288F43C2A609E6E /* ExpoModulesProvider.swift */; };
-		CF821844E72C879389B6416B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3439DFAE6B520215E82149D4 /* PrivacyInfo.xcprivacy */; };
-		E7707390A272F90E4F106A7B /* libPods-apptesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2D2937197E6708ED38289F /* libPods-apptesis.a */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0443E404322D99AB987D588B /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-apptesis/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		119081A216006AA420B5EDE9 /* libPods-apptesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-apptesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* apptesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = apptesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = apptesis/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = apptesis/Info.plist; sourceTree = "<group>"; };
-		3439DFAE6B520215E82149D4 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = apptesis/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		4B77F899C5863814984F1C8C /* Pods-apptesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apptesis.release.xcconfig"; path = "Target Support Files/Pods-apptesis/Pods-apptesis.release.xcconfig"; sourceTree = "<group>"; };
-		6A3B9FFAA0C9A42E72213CD6 /* Pods-apptesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apptesis.debug.xcconfig"; path = "Target Support Files/Pods-apptesis/Pods-apptesis.debug.xcconfig"; sourceTree = "<group>"; };
-		7D35FD6A2E8498210044459E /* TextRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizer.swift; sourceTree = "<group>"; };
-		7D35FD732E859D850044459E /* apptesis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "apptesis-Bridging-Header.h"; sourceTree = "<group>"; };
-		7DCD95262E8DAD160088FA5A /* TextRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextRecognizer.m; sourceTree = "<group>"; };
-		7E81DCD3D288F43C2A609E6E /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-apptesis/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		470D07869C3C34B5265AF20F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = apptesis/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		47396EFE7DCE780D3153AE75 /* Pods-apptesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apptesis.release.xcconfig"; path = "Target Support Files/Pods-apptesis/Pods-apptesis.release.xcconfig"; sourceTree = "<group>"; };
+		678BAB20C9CE3F838F01A3B9 /* Pods-apptesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apptesis.debug.xcconfig"; path = "Target Support Files/Pods-apptesis/Pods-apptesis.debug.xcconfig"; sourceTree = "<group>"; };
+		7DCA10782EBBDA1F0086553A /* TextRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextRecognizer.m; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = apptesis/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		CE2D2937197E6708ED38289F /* libPods-apptesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-apptesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = apptesis/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* apptesis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "apptesis-Bridging-Header.h"; path = "apptesis/apptesis-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -42,26 +39,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7707390A272F90E4F106A7B /* libPods-apptesis.a in Frameworks */,
+				34CF0A4D301150F2C9DA2102 /* libPods-apptesis.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AA19149A422C4FB2198B1F4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				678BAB20C9CE3F838F01A3B9 /* Pods-apptesis.debug.xcconfig */,
+				47396EFE7DCE780D3153AE75 /* Pods-apptesis.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* apptesis */ = {
 			isa = PBXGroup;
 			children = (
-				7DCD95262E8DAD160088FA5A /* TextRecognizer.m */,
-				7D35FD732E859D850044459E /* apptesis-Bridging-Header.h */,
-				7D35FD6A2E8498210044459E /* TextRecognizer.swift */,
 				F11748412D0307B40044C1D9 /* AppDelegate.swift */,
 				F11748442D0722820044C1D9 /* apptesis-Bridging-Header.h */,
 				BB2F792B24A3F905000567C9 /* Supporting */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				3439DFAE6B520215E82149D4 /* PrivacyInfo.xcprivacy */,
+				470D07869C3C34B5265AF20F /* PrivacyInfo.xcprivacy */,
+				7DCA10782EBBDA1F0086553A /* TextRecognizer.m */,
 			);
 			name = apptesis;
 			sourceTree = "<group>";
@@ -70,9 +74,25 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				CE2D2937197E6708ED38289F /* libPods-apptesis.a */,
+				119081A216006AA420B5EDE9 /* libPods-apptesis.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		34B722F82AC65018389B53D7 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				727063AA370F80CAC8F2F065 /* apptesis */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
+		727063AA370F80CAC8F2F065 /* apptesis */ = {
+			isa = PBXGroup;
+			children = (
+				0443E404322D99AB987D588B /* ExpoModulesProvider.swift */,
+			);
+			name = apptesis;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -89,8 +109,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				D6636813206E6F8C800FE76C /* Pods */,
-				94D02B63F43A322DA9A8D6B7 /* ExpoModulesProviders */,
+				0AA19149A422C4FB2198B1F4 /* Pods */,
+				34B722F82AC65018389B53D7 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -105,22 +125,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		907FD9A3A6BB9F0E32D24A54 /* apptesis */ = {
-			isa = PBXGroup;
-			children = (
-				7E81DCD3D288F43C2A609E6E /* ExpoModulesProvider.swift */,
-			);
-			name = apptesis;
-			sourceTree = "<group>";
-		};
-		94D02B63F43A322DA9A8D6B7 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				907FD9A3A6BB9F0E32D24A54 /* apptesis */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,15 +134,6 @@
 			path = apptesis/Supporting;
 			sourceTree = "<group>";
 		};
-		D6636813206E6F8C800FE76C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6A3B9FFAA0C9A42E72213CD6 /* Pods-apptesis.debug.xcconfig */,
-				4B77F899C5863814984F1C8C /* Pods-apptesis.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,14 +141,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "apptesis" */;
 			buildPhases = (
-				61386A3E8520B3FC6AB13741 /* [CP] Check Pods Manifest.lock */,
-				C057DB3C451B2242EE79B8D9 /* [Expo] Configure project */,
+				51BB5C8A1D0FEF20F6E4CA47 /* [CP] Check Pods Manifest.lock */,
+				A66B44DF77904C69F881B358 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				6616D830D5A6B493EEF8DE98 /* [CP] Embed Pods Frameworks */,
-				E4253A3F4F42A92B9F900D43 /* [CP] Copy Pods Resources */,
+				42EB646164A06DF0C6E60E9D /* [CP] Embed Pods Frameworks */,
+				4DA2B08D46434855AFFF0202 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -203,7 +198,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				CF821844E72C879389B6416B /* PrivacyInfo.xcprivacy in Resources */,
+				A298D6C527407D94F1F2AD6A /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +220,69 @@
 			shellPath = /bin/sh;
 			shellScript = "if [[ -f \"$PODS_ROOT/../.xcode.env\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env\"\nfi\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n# The project root by default is one level up from the ios directory\nexport PROJECT_ROOT=\"$PROJECT_DIR\"/..\n\nif [[ \"$CONFIGURATION\" = *Debug* ]]; then\n  export SKIP_BUNDLING=1\nfi\nif [[ -z \"$ENTRY_FILE\" ]]; then\n  # Set the entry JS file using the bundler's entry resolution.\n  export ENTRY_FILE=\"$(\"$NODE_BINARY\" -e \"require('expo/scripts/resolveAppEntry')\" \"$PROJECT_ROOT\" ios absolute | tail -n 1)\"\nfi\n\nif [[ -z \"$CLI_PATH\" ]]; then\n  # Use Expo CLI\n  export CLI_PATH=\"$(\"$NODE_BINARY\" --print \"require.resolve('@expo/cli', { paths: [require.resolve('expo/package.json')] })\")\"\nfi\nif [[ -z \"$BUNDLE_COMMAND\" ]]; then\n  # Default Expo CLI command for bundling\n  export BUNDLE_COMMAND=\"export:embed\"\nfi\n\n# Source .xcode.env.updates if it exists to allow\n# SKIP_BUNDLING to be unset if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.updates\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.updates\"\nfi\n# Source local changes to allow overrides\n# if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n`\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\"`\n\n";
 		};
-		61386A3E8520B3FC6AB13741 /* [CP] Check Pods Manifest.lock */ = {
+		42EB646164A06DF0C6E60E9D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-apptesis/Pods-apptesis-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apptesis/Pods-apptesis-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4DA2B08D46434855AFFF0202 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-apptesis/Pods-apptesis-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXApplication/ExpoApplication_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXNotifications/ExpoNotifications_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoFileSystem/ExpoFileSystem_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RCT-Folly/RCT-Folly_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage/RNCAsyncStorage_resources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG/RNSVGFilters.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/React-Core_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact/React-cxxreact_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/boost/boost_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/glog/glog_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios/LottiePrivacyInfo.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoApplication_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXConstants.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoConstants_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoNotifications_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoFileSystem_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCT-Folly_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNCAsyncStorage_resources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNSVGFilters.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-Core_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-cxxreact_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SDWebImage.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/boost_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/glog_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LottiePrivacyInfo.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apptesis/Pods-apptesis-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51BB5C8A1D0FEF20F6E4CA47 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -247,25 +304,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6616D830D5A6B493EEF8DE98 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-apptesis/Pods-apptesis-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apptesis/Pods-apptesis-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C057DB3C451B2242EE79B8D9 /* [Expo] Configure project */ = {
+		A66B44DF77904C69F881B358 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -284,44 +323,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-apptesis/expo-configure-project.sh\"\n";
 		};
-		E4253A3F4F42A92B9F900D43 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-apptesis/Pods-apptesis-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoFileSystem/ExpoFileSystem_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/RCT-Folly/RCT-Folly_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage/RNCAsyncStorage_resources.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG/RNSVGFilters.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/React-Core_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact/React-cxxreact_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/boost/boost_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/glog/glog_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios/LottiePrivacyInfo.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXConstants.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoConstants_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoFileSystem_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCT-Folly_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNCAsyncStorage_resources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNSVGFilters.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-Core_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-cxxreact_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/boost_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/glog_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LottiePrivacyInfo.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apptesis/Pods-apptesis-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -329,10 +330,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DCD95272E8DAD2D0088FA5A /* TextRecognizer.m in Sources */,
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				7D35FD6B2E84982E0044459E /* TextRecognizer.swift in Sources */,
-				BDE0F5D29E08E30C34436570 /* ExpoModulesProvider.swift in Sources */,
+				2A3A9F9E522853B11F670B64 /* ExpoModulesProvider.swift in Sources */,
+				7D7615E32EBBE9F5005151CE /* TextRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +341,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A3B9FFAA0C9A42E72213CD6 /* Pods-apptesis.debug.xcconfig */;
+			baseConfigurationReference = 678BAB20C9CE3F838F01A3B9 /* Pods-apptesis.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -352,108 +352,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"FB_SONARKIT_ENABLED=1",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
-					"\"${PODS_ROOT}/Headers/Public/EXAV\"",
-					"\"${PODS_ROOT}/Headers/Public/EXConstants\"",
-					"\"${PODS_ROOT}/Headers/Public/Expo\"",
-					"\"${PODS_ROOT}/Headers/Public/ExpoFileSystem\"",
-					"\"${PODS_ROOT}/Headers/Public/ExpoModulesCore\"",
-					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
-					"\"${PODS_ROOT}/Headers/Public/RCT-Folly\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTDeprecation\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCAsyncStorage\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCMaskedView\"",
-					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
-					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
-					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
-					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
-					"\"${PODS_ROOT}/Headers/Public/React-Fabric\"",
-					"\"${PODS_ROOT}/Headers/Public/React-FabricComponents\"",
-					"\"${PODS_ROOT}/Headers/Public/React-FabricImage\"",
-					"\"${PODS_ROOT}/Headers/Public/React-ImageManager\"",
-					"\"${PODS_ROOT}/Headers/Public/React-Mapbuffer\"",
-					"\"${PODS_ROOT}/Headers/Public/React-NativeModulesApple\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTAnimation\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTAppDelegate\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTBlob\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTFBReactNativeSpec\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTFabric\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTRuntime\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RuntimeApple\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RuntimeCore\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RuntimeHermes\"",
-					"\"${PODS_ROOT}/Headers/Public/React-callinvoker\"",
-					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
-					"\"${PODS_ROOT}/Headers/Public/React-debug\"",
-					"\"${PODS_ROOT}/Headers/Public/React-defaultsnativemodule\"",
-					"\"${PODS_ROOT}/Headers/Public/React-domnativemodule\"",
-					"\"${PODS_ROOT}/Headers/Public/React-featureflags\"",
-					"\"${PODS_ROOT}/Headers/Public/React-featureflagsnativemodule\"",
-					"\"${PODS_ROOT}/Headers/Public/React-graphics\"",
-					"\"${PODS_ROOT}/Headers/Public/React-hermes\"",
-					"\"${PODS_ROOT}/Headers/Public/React-idlecallbacksnativemodule\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jserrorhandler\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsinspectortracing\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsitooling\"",
-					"\"${PODS_ROOT}/Headers/Public/React-logger\"",
-					"\"${PODS_ROOT}/Headers/Public/React-microtasksnativemodule\"",
-					"\"${PODS_ROOT}/Headers/Public/React-oscompat\"",
-					"\"${PODS_ROOT}/Headers/Public/React-perflogger\"",
-					"\"${PODS_ROOT}/Headers/Public/React-performancetimeline\"",
-					"\"${PODS_ROOT}/Headers/Public/React-rendererconsistency\"",
-					"\"${PODS_ROOT}/Headers/Public/React-renderercss\"",
-					"\"${PODS_ROOT}/Headers/Public/React-rendererdebug\"",
-					"\"${PODS_ROOT}/Headers/Public/React-runtimeexecutor\"",
-					"\"${PODS_ROOT}/Headers/Public/React-runtimescheduler\"",
-					"\"${PODS_ROOT}/Headers/Public/React-timing\"",
-					"\"${PODS_ROOT}/Headers/Public/React-utils\"",
-					"\"${PODS_ROOT}/Headers/Public/ReactAppDependencyProvider\"",
-					"\"${PODS_ROOT}/Headers/Public/ReactCodegen\"",
-					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
-					"\"${PODS_ROOT}/Headers/Public/SocketRocket\"",
-					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
-					"\"${PODS_ROOT}/Headers/Public/ZXingObjC\"",
-					"\"${PODS_ROOT}/Headers/Public/boost\"",
-					"\"${PODS_ROOT}/Headers/Public/fast_float\"",
-					"\"${PODS_ROOT}/Headers/Public/fmt\"",
-					"\"${PODS_ROOT}/Headers/Public/glog\"",
-					"\"${PODS_ROOT}/Headers/Public/hermes-engine\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
-					"\"$(PODS_ROOT)/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Expo/Swift Compatibility Header\"",
-					"\"$(PODS_ROOT)/Headers/Private/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ExpoModulesCore/Swift Compatibility Header\"",
-					"\"$(PODS_ROOT)/Headers/Private/Yoga\"",
-					"\"$(PODS_ROOT)/boost\"",
-					"\"$(PODS_ROOT)/boost\"",
-					"\"$(PODS_ROOT)/boost-for-react-native\"",
-					"\"$(PODS_ROOT)/glog\"",
-					"\"$(PODS_ROOT)/RCT-Folly\"",
-					"\"$(PODS_ROOT)/Headers/Public/React-hermes\"",
-					"\"$(PODS_ROOT)/Headers/Public/hermes-engine\"",
-					"\"$(PODS_ROOT)/../../node_modules/react-native/ReactCommon\"",
-					"\"$(PODS_ROOT)/../../node_modules/react-native-reanimated/apple\"",
-					"\"$(PODS_ROOT)/../../node_modules/react-native-reanimated/Common/cpp\"",
-					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
-					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
-					"\"$(PODS_ROOT)/Headers/Private/Yoga\"",
-					"$(SRCROOT)/Pods/Headers/Public/**/**",
-					"$(inherited)",
-					"\"$(SRCROOT)/Pods/Headers/Public/**   (Recursive = Yes)\"",
-					"$(inherited)",
-					"\"$(SRCROOT)/Pods/Headers/Public/**   (Recursive = Yes)\"",
-					"$(inherited)",
 				);
 				INFOPLIST_FILE = apptesis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -468,7 +366,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jimezapolski.apptesis;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anonymous.apptesis;
 				PRODUCT_NAME = apptesis;
 				SWIFT_OBJC_BRIDGING_HEADER = "apptesis/apptesis-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -480,115 +378,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B77F899C5863814984F1C8C /* Pods-apptesis.release.xcconfig */;
+			baseConfigurationReference = 47396EFE7DCE780D3153AE75 /* Pods-apptesis.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = apptesis/apptesis.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 758VDSPZDJ;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
-					"\"${PODS_ROOT}/Headers/Public/EXAV\"",
-					"\"${PODS_ROOT}/Headers/Public/EXConstants\"",
-					"\"${PODS_ROOT}/Headers/Public/Expo\"",
-					"\"${PODS_ROOT}/Headers/Public/ExpoFileSystem\"",
-					"\"${PODS_ROOT}/Headers/Public/ExpoModulesCore\"",
-					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
-					"\"${PODS_ROOT}/Headers/Public/RCT-Folly\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTDeprecation\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCAsyncStorage\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCMaskedView\"",
-					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
-					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
-					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
-					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
-					"\"${PODS_ROOT}/Headers/Public/React-Fabric\"",
-					"\"${PODS_ROOT}/Headers/Public/React-FabricComponents\"",
-					"\"${PODS_ROOT}/Headers/Public/React-FabricImage\"",
-					"\"${PODS_ROOT}/Headers/Public/React-ImageManager\"",
-					"\"${PODS_ROOT}/Headers/Public/React-Mapbuffer\"",
-					"\"${PODS_ROOT}/Headers/Public/React-NativeModulesApple\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTAnimation\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTAppDelegate\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTBlob\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTFBReactNativeSpec\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTFabric\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTRuntime\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RuntimeApple\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RuntimeCore\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RuntimeHermes\"",
-					"\"${PODS_ROOT}/Headers/Public/React-callinvoker\"",
-					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
-					"\"${PODS_ROOT}/Headers/Public/React-debug\"",
-					"\"${PODS_ROOT}/Headers/Public/React-defaultsnativemodule\"",
-					"\"${PODS_ROOT}/Headers/Public/React-domnativemodule\"",
-					"\"${PODS_ROOT}/Headers/Public/React-featureflags\"",
-					"\"${PODS_ROOT}/Headers/Public/React-featureflagsnativemodule\"",
-					"\"${PODS_ROOT}/Headers/Public/React-graphics\"",
-					"\"${PODS_ROOT}/Headers/Public/React-hermes\"",
-					"\"${PODS_ROOT}/Headers/Public/React-idlecallbacksnativemodule\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jserrorhandler\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsinspectortracing\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsitooling\"",
-					"\"${PODS_ROOT}/Headers/Public/React-logger\"",
-					"\"${PODS_ROOT}/Headers/Public/React-microtasksnativemodule\"",
-					"\"${PODS_ROOT}/Headers/Public/React-oscompat\"",
-					"\"${PODS_ROOT}/Headers/Public/React-perflogger\"",
-					"\"${PODS_ROOT}/Headers/Public/React-performancetimeline\"",
-					"\"${PODS_ROOT}/Headers/Public/React-rendererconsistency\"",
-					"\"${PODS_ROOT}/Headers/Public/React-renderercss\"",
-					"\"${PODS_ROOT}/Headers/Public/React-rendererdebug\"",
-					"\"${PODS_ROOT}/Headers/Public/React-runtimeexecutor\"",
-					"\"${PODS_ROOT}/Headers/Public/React-runtimescheduler\"",
-					"\"${PODS_ROOT}/Headers/Public/React-timing\"",
-					"\"${PODS_ROOT}/Headers/Public/React-utils\"",
-					"\"${PODS_ROOT}/Headers/Public/ReactAppDependencyProvider\"",
-					"\"${PODS_ROOT}/Headers/Public/ReactCodegen\"",
-					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
-					"\"${PODS_ROOT}/Headers/Public/SocketRocket\"",
-					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
-					"\"${PODS_ROOT}/Headers/Public/ZXingObjC\"",
-					"\"${PODS_ROOT}/Headers/Public/boost\"",
-					"\"${PODS_ROOT}/Headers/Public/fast_float\"",
-					"\"${PODS_ROOT}/Headers/Public/fmt\"",
-					"\"${PODS_ROOT}/Headers/Public/glog\"",
-					"\"${PODS_ROOT}/Headers/Public/hermes-engine\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
-					"\"$(PODS_ROOT)/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Expo/Swift Compatibility Header\"",
-					"\"$(PODS_ROOT)/Headers/Private/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ExpoModulesCore/Swift Compatibility Header\"",
-					"\"$(PODS_ROOT)/Headers/Private/Yoga\"",
-					"\"$(PODS_ROOT)/boost\"",
-					"\"$(PODS_ROOT)/boost\"",
-					"\"$(PODS_ROOT)/boost-for-react-native\"",
-					"\"$(PODS_ROOT)/glog\"",
-					"\"$(PODS_ROOT)/RCT-Folly\"",
-					"\"$(PODS_ROOT)/Headers/Public/React-hermes\"",
-					"\"$(PODS_ROOT)/Headers/Public/hermes-engine\"",
-					"\"$(PODS_ROOT)/../../node_modules/react-native/ReactCommon\"",
-					"\"$(PODS_ROOT)/../../node_modules/react-native-reanimated/apple\"",
-					"\"$(PODS_ROOT)/../../node_modules/react-native-reanimated/Common/cpp\"",
-					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
-					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
-					"\"$(PODS_ROOT)/Headers/Private/Yoga\"",
-					"$(SRCROOT)/Pods/Headers/Public/**/**",
-					"$(inherited)",
-					"\"$(SRCROOT)/Pods/Headers/Public/**   (Recursive = Yes)\"",
-					"$(inherited)",
-					"\"$(SRCROOT)/Pods/Headers/Public/**   (Recursive = Yes)\"",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = apptesis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -602,7 +398,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jimezapolski.apptesis;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anonymous.apptesis;
 				PRODUCT_NAME = apptesis;
 				SWIFT_OBJC_BRIDGING_HEADER = "apptesis/apptesis-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -658,7 +454,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native/React/**/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
@@ -667,11 +462,10 @@
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
-				SWIFT_OBJC_BRIDGING_HEADER = "apptesis/apptesis-Bridging-Header.h\n";
 				USE_HERMES = true;
 			};
 			name = Debug;
@@ -716,7 +510,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native/React/**/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
@@ -724,11 +517,9 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "-ObjC";
-				"OTHER_LDFLAGS[arch=*]" = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "apptesis/apptesis-Bridging-Header.h\n";
 				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};

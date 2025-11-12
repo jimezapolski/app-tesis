@@ -7,6 +7,9 @@ import { getItem } from '../src/utils/asyncStorage';
 import ScanScreen from "../screens/scan/ScanScreen";
 import ProductDetailsScreen from "../screens/scan/ProductDetailsScreen";
 import HistoryScreen from '../screens/history/HistoryScreen';
+import LabelsGuideScreen from '../screens/education/LabelsGuideScreen';
+import HealthyMythsScreen from '../screens/education/HealthyMythsScreen';
+import HealthyRangesScreen from '../screens/education/HealthyRangesScreen';
 
 const Stack = createStackNavigator();
 
@@ -40,9 +43,13 @@ export default function AppNavigation() {
             <Stack.Navigator initialRouteName={showOnboarding ? "Onboarding" : "Home"}>
                 <Stack.Screen name="Onboarding" options={{ headerShown: false }} component={OnBoardingScreen} />
                 <Stack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
-                <Stack.Screen name="Scan" component={ScanScreen} options={{ title: "Escanear producto" }} />
+                <Stack.Screen name="Scan" component={ScanScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} options={{ title: "Producto" }} />
                 <Stack.Screen name="History" component={HistoryScreen} options={{ title: 'Historial' }} /> 
+                <Stack.Screen name="LabelsGuide" component={LabelsGuideScreen} options={{ title: "Guía para leer etiquetas" }} />
+                <Stack.Screen name="HealthyMyths" component={HealthyMythsScreen} options={{ title: "Desmitificando lo saludable" }} />
+                <Stack.Screen name="HealthyRanges" component={HealthyRangesScreen} options={{ title: "Rangos saludables" }} />
+
 
             </Stack.Navigator>
         </NavigationContainer>

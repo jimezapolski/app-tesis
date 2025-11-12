@@ -11,7 +11,7 @@ export const carousel = StyleSheet.create({
     overflow: "hidden",
     marginRight: HOME.spacing.lg,
   },
-  image: { width: "100%", height: "100%" },
+  image: { width: "100%", height: "100%", resizeMode:"cover" },
   overlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0,0,0,0.35)",
@@ -65,7 +65,7 @@ export const bottomBar = StyleSheet.create({
   },
   ctaText: {
     color: "#FFFFFF",
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: "Figtree_600SemiBold",
   },
   icon: { fontSize: 18, marginRight: 10, color: "#FFFFFF" },

@@ -121,19 +121,35 @@
 
 // screens/scan/ScanScreen.js
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Alert, AppState, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  AppState,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import * as Haptics from "expo-haptics";
-
+import CustomHeader from "../../src/components/CustomHeader";
+import { MinimalBackButton } from "../../src/components/CustomHeader";
 import ProductCards from "../../src/components/ProductCards";
 import { recognize, matchProductByText } from "../../src/native/TextRecognizer";
 import products from "../../assets/data/products.json";
+import { useNavigation } from "@react-navigation/native";
 
-const SCAN_INTERVAL_MS = 1200;  // tu timing original
+const SCAN_INTERVAL_MS = 1200; // tu timing original
 const FRAME_ASPECT = 1.2;
-const MATCH_OPTS = { threshold: 0.10, minHits: 2 };
+const MATCH_OPTS = { threshold: 0.1, minHits: 2 };
+const HEADER_H = 56;
 
 export default function ScanScreen() {
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
   const camRef = useRef(null);
 
   // loop robusto (sin setInterval)
@@ -225,7 +241,7 @@ export default function ScanScreen() {
       const shot = await camRef.current.takePictureAsync({
         base64: true,
         quality: Platform.OS === "ios" ? 0.8 : 0.8,
-        skipProcessing: false,   // deja orientación/nitidez del SO
+        skipProcessing: false, // deja orientación/nitidez del SO
         exif: false,
         // imageType: "jpg", // si tu SDK lo soporta, activalo
       });
@@ -246,7 +262,11 @@ export default function ScanScreen() {
         : 0;
       setDbg((d) => ({ ...d, tokens }));
 
-      const { product, score, hits } = matchProductByText(lines, products, MATCH_OPTS);
+      const { product, score, hits } = matchProductByText(
+        lines,
+        products,
+        MATCH_OPTS
+      );
 
       setDbg((d) => ({
         ...d,
@@ -275,20 +295,33 @@ export default function ScanScreen() {
   }, []);
 
   // cleanup
-  useEffect(() => () => { runningRef.current = false; }, []);
+  useEffect(
+    () => () => {
+      runningRef.current = false;
+    },
+    []
+  );
 
   if (!permission) return null;
   if (!permission.granted) {
     return (
       <View style={styles.center}>
         <Text style={styles.title}>Se necesita acceso a la cámara</Text>
-        <Text style={styles.note}>Habilitalo en Configuración para continuar.</Text>
+        <Text style={styles.note}>
+          Habilitalo en Configuración para continuar.
+        </Text>
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
+      <View
+        pointerEvents="box-none"
+        style={[styles.headerOverlay, { paddingTop: insets.top + 4 }]}
+      >
+        <MinimalBackButton onPress={() => navigation.goBack()} />
+      </View>
       <CameraView
         ref={camRef}
         style={StyleSheet.absoluteFill}
@@ -302,7 +335,7 @@ export default function ScanScreen() {
       />
 
       {!!message && (
-        <View style={styles.topBanner}>
+        <View style={[styles.topBanner, { top: insets.top + HEADER_H + 8 }]}>
           <Text style={styles.topBannerText}>{message}</Text>
         </View>
       )}
@@ -335,12 +368,12 @@ export default function ScanScreen() {
         </>
       )} */}
 
-{detectedProduct && (
-  <ProductCards
-    product={detectedProduct}
-    onClose={() => setDetectedProduct(null)}
-  />
-)}
+      {detectedProduct && (
+        <ProductCards
+          product={detectedProduct}
+          onClose={() => setDetectedProduct(null)}
+        />
+      )}
 
       {/* Debug
       <View style={styles.debugBubble}>
@@ -366,7 +399,12 @@ export default function ScanScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#000" },
-  center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 24 },
+  center: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 24,
+  },
   title: { fontSize: 18, fontWeight: "600", color: "#111" },
   note: { marginTop: 8, color: "#666" },
 
@@ -380,8 +418,18 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   topBannerText: { color: "#fff", fontSize: 16, fontWeight: "600" },
-
-  frameWrapper: { ...StyleSheet.absoluteFillObject, alignItems: "center", justifyContent: "center" },
+  headerOverlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 20, // asegura estar sobre la cámara
+  },
+  frameWrapper: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   frame: {
     width: "78%",
     aspectRatio: FRAME_ASPECT,
@@ -393,19 +441,27 @@ const styles = StyleSheet.create({
 
   productCard: {
     position: "absolute",
-    left: 16, right: 16,
+    left: 16,
+    right: 16,
     bottom: 28 + (Platform.OS === "ios" ? 6 : 0),
     padding: 14,
     borderRadius: 14,
     backgroundColor: "rgba(0,0,0,0.55)",
   },
-  productTitle: { color: "#fff", fontWeight: "700", fontSize: 16, marginBottom: 6 },
+  productTitle: {
+    color: "#fff",
+    fontWeight: "700",
+    fontSize: 16,
+    marginBottom: 6,
+  },
   productSeals: { color: "#f8d477", fontSize: 14 },
 
   debugBubble: {
     position: "absolute",
-    left: 16, bottom: 24,
-    padding: 10, borderRadius: 12,
+    left: 16,
+    bottom: 24,
+    padding: 10,
+    borderRadius: 12,
     backgroundColor: "rgba(0,0,0,0.55)",
     maxWidth: "78%",
   },

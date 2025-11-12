@@ -42,7 +42,12 @@
     "size": "400 g",
     "category": "Dulces / Dulce de leche",
     "keywords": ["dulce de leche", "clásico", "milkaut", "400g"],
-    "aliases": []
+    "aliases": [],
+    "cards": {
+      "positivo": "Fuente de calcio y energía rápida.",
+      "recomendacion": "Usalo en porciones pequeñas (1 cucharada) como acompañamiento, no como postre habitual.",
+      "alerta": "Exceso en azúcares y grasas saturadas: reservá su consumo para ocasiones puntuales."
+    }
   },
   {
     "barcode": "7790000000004",

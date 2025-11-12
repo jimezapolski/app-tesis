@@ -44,6 +44,8 @@ import {
   Figtree_800ExtraBold,
 } from '@expo-google-fonts/figtree';
 import { ActivityIndicator, View } from 'react-native';
+import { LogBox } from "react-native";
+LogBox.ignoreAllLogs(true);
 
 export default function App() {
   const [fontsLoaded] = useFonts({

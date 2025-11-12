@@ -75,3 +75,38 @@ export const ui = {
     small: { fontSize: 12, color: '#6B7280', fontFamily: 'Figtree_400Regular' },
   },
 };
+// ─────────────────────────────────────────────────────────────
+// HOME THEME – tokens específicos para la pantalla principal
+export const HOME = {
+  colors: {
+    headingBlue: '#42658E',          // títulos y textos azules
+    primaryBlue: COLORS.celesteOscuro, // #608EC6, acentos en textos bold
+    white: '#FFFFFF',
+    overlayDark: 'rgba(0,0,0,0.45)',  // para textos sobre fotos
+    overlaySoft: 'rgba(0,0,0,0.25)',
+    glass: 'rgba(255,255,255,0.72)',
+    glassBorder: 'rgba(255,255,255,0.65)',
+    shadow: 'rgba(14,23,38,0.20)',
+  },
+
+  type: {
+    hola32ExtraBold:   { fontSize: 36, fontFamily: 'Figtree_800ExtraBold', color: '#42658E' },
+    lead20Medium:      { fontSize: 20, fontFamily: 'Figtree_600SemiBold', color: '#608EC6' },
+    lead20BoldBlue:    { fontSize: 20, fontFamily: 'Figtree_700Bold', color: '#608EC6' },
+
+    quickTitle16:      { fontSize: 16, fontFamily: 'Figtree_600SemiBold', color: '#42658E' },
+    quickBody12:       { fontSize: 12, fontFamily: 'Figtree_400Regular', color: '#42658E' },
+
+    section20:         { fontSize: 20, fontFamily: 'Figtree_600SemiBold', color: '#42658E' },
+
+    adviceChip12:      { fontSize: 12, fontFamily: 'Figtree_600SemiBold', color: '#FFFFFF' },
+    adviceTitle20:     { fontSize: 20, fontFamily: 'Figtree_600SemiBold', color: '#FFFFFF' },
+    adviceText14:      { fontSize: 14, fontFamily: 'Figtree_400Regular', color: '#FFFFFF' },
+
+    miniTitle16:       { fontSize: 16, fontFamily: 'Figtree_600SemiBold', color: '#42658E' },
+  },
+
+  radii: { xl: 24, lg: 18, md: 14, pill: 999 },
+  spacing: ui.spacing,
+  shadowCard: ui.shadow.card,
+};

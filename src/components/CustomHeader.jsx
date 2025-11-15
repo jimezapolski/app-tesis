@@ -1,51 +1,44 @@
-// src/components/CustomHeader.jsx
+// components/CustomHeader.jsx
 import React from "react";
 import {
   View,
   Text,
   TouchableOpacity,
-  Image,
-  Platform,
-  StyleSheet,
-  Pressable,
   ImageBackground,
+  StyleSheet,
+  Platform,
+  Pressable,
 } from "react-native";
 import { BlurView } from "expo-blur";
 import { HOME } from "../../constants/theme";
 
-
-export default function CustomHeader({
-  title = "",
-  onBack,
-  right = null,
-  variant = "blur",
-}) {
-  const Container = ({ children }) =>
-    variant === "blur" ? (
-      <BlurView intensity={40} tint="light" style={styles.container}>
-        {children}
-      </BlurView>
-    ) : (
-      <View style={[styles.container, { backgroundColor: "transparent" }]}>
-        {children}
-      </View>
-    );
-
+export default function CustomHeader({ title = "", onBack }) {
   return (
-    <Container>
-      <View style={styles.inner}>
-        {/* Back */}
+    <View style={styles.headerWrap}>
+      {/* Blur ancho completo, como en Home */}
+      <BlurView
+        intensity={28}
+        tint="light"
+        style={styles.blurBackground}
+        pointerEvents="none"
+      />
+
+      {/* Contenido del header */}
+      <View style={styles.container}>
+        {/* Botón atrás */}
         <TouchableOpacity
           onPress={onBack}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          style={styles.backBtn}
+          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+          style={styles.backWrapper}
         >
-          <Image
-            source={require("../../assets/icons/back-arrow.png")}
-            style={styles.backIcon}
-            onError={() => {}}
-          />
-          {/* <Text style={styles.backText}>‹</Text> */}
+          <ImageBackground
+            source={require("../../assets/glass-btn.png")}
+            style={styles.backBg}
+            imageStyle={{ borderRadius: 22 }}
+            resizeMode="cover"
+          >
+            <Text style={styles.backIcon}>←</Text>
+          </ImageBackground>
         </TouchableOpacity>
 
         {/* Título */}
@@ -53,37 +46,67 @@ export default function CustomHeader({
           {title}
         </Text>
 
-        {/* Slot derecho */}
-        <View style={styles.right}>{right}</View>
+        {/* placeholder para centrar */}
+        <View style={{ width: 44 }} />
       </View>
-    </Container>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  // Contenedor general del header (similar al View del botón fijo)
+  headerWrap: {
+    width: "100%",
+    // alto automático según padding, pero con fondo tipo “vidrio”
+    backgroundColor: "rgba(255,255,255,0.18)",
+    borderBottomWidth: 1,
+    borderBottomColor: "rgba(255,255,255,0.45)",
+    overflow: "hidden",
+  },
+
+  // Blur “pegado” al header, como glassFull pero solo en la franja de header
+  blurBackground: {
+    ...StyleSheet.absoluteFillObject,
+  },
+
+  // Contenido (flecha + título)
   container: {
     paddingTop: Platform.OS === "ios" ? 54 : 24,
     paddingBottom: 12,
-    borderBottomWidth: 1,
-    borderColor: "rgba(255,255,255,0.35)",
-  },
-  inner: {
+    paddingHorizontal: 16,
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
-    paddingHorizontal: 16,
+    justifyContent: "space-between",
   },
-  backBtn: { width: 40, height: 32, alignItems: "flex-start", justifyContent: "center" },
-  backIcon: { width: 22, height: 22, tintColor: "#608EC6" },
-  // backText: { fontSize: 28, color: "#608EC6", lineHeight: 28, marginTop: -2 },
+
+  backWrapper: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    overflow: "hidden",
+  },
+
+  backBg: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  backIcon: {
+    fontSize: 22,
+    fontWeight: "600",
+    color: "#608EC6",
+    textAlign: "center",
+    marginTop: -1,
+  },
+
   title: {
     flex: 1,
     textAlign: "center",
-    marginRight: 40,
-    ...HOME.type.quickTitle16,
+    marginRight: 44,
+    ...HOME.type.section20,
     fontSize: 18,
   },
-  right: { width: 40, alignItems: "flex-end" },
 });
 
 /* ============================================================
@@ -104,17 +127,16 @@ export function MinimalBackButton({ onPress }) {
         marginLeft: 16,
         marginTop: Platform.OS === "ios" ? 6 : 0,
         shadowColor: "#000",
-        shadowOpacity: 0.10,
+        shadowOpacity: 0.1,
         shadowRadius: 6,
         shadowOffset: { width: 0, height: 2 },
       }}
     >
-      {/* Fondo glass por imagen */}
       <ImageBackground
         source={require("../../assets/glass-btn.png")}
         resizeMode="cover"
         style={{ width: "100%", height: "100%" }}
-        imageStyle={{ borderRadius: 22 }}
+        imageStyle={{ borderRadius: 10 }}
       >
         <View
           style={{
@@ -123,8 +145,6 @@ export function MinimalBackButton({ onPress }) {
             justifyContent: "center",
           }}
         >
-          {/* Usá tu icono/back actual, o el símbolo ← como fallback */}
-          {/* <Image source={require("../../assets/icons/chevron-left.png")} style={{ width: 18, height: 18, tintColor: "#608EC6" }} /> */}
           <Text
             style={{
               color: "#FFFFFF",

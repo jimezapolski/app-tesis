@@ -10,6 +10,10 @@ import HistoryScreen from '../screens/history/HistoryScreen';
 import LabelsGuideScreen from '../screens/education/LabelsGuideScreen';
 import HealthyMythsScreen from '../screens/education/HealthyMythsScreen';
 import HealthyRangesScreen from '../screens/education/HealthyRangesScreen';
+import AdviceFoodScreen from "../screens/education/AdviceFoodScreen";
+import AdviceHydrationScreen from "../screens/education/AdviceHydrationScreen";
+import AdviceProteinScreen from "../screens/education/AdviceProteinScreen";
+
 
 const Stack = createStackNavigator();
 
@@ -46,10 +50,12 @@ export default function AppNavigation() {
                 <Stack.Screen name="Scan" component={ScanScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} options={{ title: "Producto" }} />
                 <Stack.Screen name="History" component={HistoryScreen} options={{ title: 'Historial' }} /> 
-                <Stack.Screen name="LabelsGuide" component={LabelsGuideScreen} options={{ title: "Guía para leer etiquetas" }} />
-                <Stack.Screen name="HealthyMyths" component={HealthyMythsScreen} options={{ title: "Desmitificando lo saludable" }} />
-                <Stack.Screen name="HealthyRanges" component={HealthyRangesScreen} options={{ title: "Rangos saludables" }} />
-
+                <Stack.Screen name="LabelsGuide" component={LabelsGuideScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="HealthyMyths" component={HealthyMythsScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="HealthyRanges" component={HealthyRangesScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="AdviceFood" component={AdviceFoodScreen} options={{ headerShown: false }} /> 
+                <Stack.Screen name="AdviceHydration" component={AdviceHydrationScreen} options={{ headerShown: false }}/>
+                <Stack.Screen name="AdviceProtein" component={AdviceProteinScreen} options={{ headerShown: false }}/>
 
             </Stack.Navigator>
         </NavigationContainer>

@@ -49,9 +49,13 @@ const DATA = [
   },
 ];
 
-function AdviceCard({ item }) {
+function AdviceCard({ item, onPress }) {
   return (
-    <View style={[carousel.item, carousel.shadow]}>
+    <TouchableOpacity
+      activeOpacity={0.9}
+      onPress={onPress}
+      style={[carousel.item, carousel.shadow]}
+    >
       <Image source={item.image} style={carousel.image} />
       <View style={carousel.overlay}>
         <View style={carousel.chip}>
@@ -62,7 +66,7 @@ function AdviceCard({ item }) {
           {item.text}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -177,17 +181,30 @@ export default function HomeScreen({ navigation }) {
           </Text>
 
           <FlatList
-            data={DATA}
-            keyExtractor={(it) => it.id}
-            horizontal
-            renderItem={({ item }) => <AdviceCard item={item} />}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingHorizontal: HOME.spacing.xl }}
-            style={{ marginTop: HOME.spacing.md }}
-            decelerationRate="fast"
-            snapToInterval={300 + HOME.spacing.lg}
-            snapToAlignment="start"
-          />
+  data={DATA}
+  keyExtractor={(it) => it.id}
+  horizontal
+  renderItem={({ item }) => (
+    <AdviceCard
+      item={item}
+      onPress={() => {
+        if (item.id === "1") {
+          navigation.navigate("AdviceFood");
+        } else if (item.id === "2") {
+          navigation.navigate("AdviceHydration");
+        } else if (item.id === "3") {
+          navigation.navigate("AdviceProtein");
+        }
+      }}
+    />
+  )}
+  showsHorizontalScrollIndicator={false}
+  contentContainerStyle={{ paddingHorizontal: HOME.spacing.xl }}
+  style={{ marginTop: HOME.spacing.md }}
+  decelerationRate="fast"
+  snapToInterval={300 + HOME.spacing.lg}
+  snapToAlignment="start"
+/>
         </ScrollView>
       </SafeAreaView>
 

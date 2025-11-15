@@ -1,6 +1,6 @@
 # 📱 App Tesis – Ley de Etiquetado Frontal
 
-Aplicación educativa desarrollada como parte de la tesis universitaria de **Jime Zapolski**, orientada a ayudar a los consumidores a interpretar la **Ley de Etiquetado Frontal** en Argentina.  
+Aplicación educativa desarrollada como parte de mi tesis universitaria en la Licenciatura de Tecnología Multimedial de la Universidad Maimonides, orientada a ayudar a los consumidores a interpretar la **Ley de Etiquetado Frontal** en Argentina.  
 Su objetivo es **informar, educar y motivar** decisiones de compra más saludables, con un enfoque accesible, empático y flexible.
 
 ---
